@@ -1,6 +1,8 @@
 package br.com.alura.srtch;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvRecurse;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,10 +15,12 @@ public class Cliente {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @ManyToOne
   @CsvBindByName
   @Enumerated(EnumType.STRING)
   private StatusCliente status;
 
+  @CsvRecurse
   private Endereco endereco;
 
   @CsvBindByName
