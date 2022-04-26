@@ -31,16 +31,12 @@ public class CadastroDeCliente {
     ClienteDao dao = new ClienteDao(em);
     EnderecoDao edao = new EnderecoDao(em);
 
-        em.getTransaction().
-
-    begin();
+        em.getTransaction().begin();
         dao.cadastrar(cliente);
-        em.getTransaction().
-
-    commit();
+        em.getTransaction().commit();
 
         em.merge(cliente);
-        em.remove(cliente);
+        //em.remove(cliente);
         em.flush();
         em.close();
 }
