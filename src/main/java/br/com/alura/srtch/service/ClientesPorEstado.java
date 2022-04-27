@@ -1,4 +1,6 @@
-package br.com.alura.srtch;
+package br.com.alura.srtch.service;
+
+import br.com.alura.srtch.model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;

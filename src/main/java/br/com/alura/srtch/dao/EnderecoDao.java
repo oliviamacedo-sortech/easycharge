@@ -1,7 +1,6 @@
 package br.com.alura.srtch.dao;
 
-import br.com.alura.srtch.Cliente;
-import br.com.alura.srtch.Endereco;
+import br.com.alura.srtch.model.Endereco;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -24,14 +23,5 @@ public class EnderecoDao {
     public void remover(Endereco endereco){
         endereco = em.merge(endereco);
         this.em.remove(endereco);
-    }
-
-    public Endereco buscarPorId(Long id){
-        return em.find(Endereco.class, 1);
-    }
-
-    public List<Endereco> buscarTodos(){
-        String jpql = "SELECT * FROM Endereco e";
-        return em.createQuery(jpql, Endereco.class).getResultList();
     }
 }

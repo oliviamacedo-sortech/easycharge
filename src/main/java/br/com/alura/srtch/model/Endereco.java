@@ -1,4 +1,4 @@
-package br.com.alura.srtch;
+package br.com.alura.srtch.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.bean.CsvBindByName;
@@ -35,14 +35,14 @@ public class Endereco {
     public Endereco(){}
 
 
-//    public Endereco(String rua, String numero, String complemento, String bairro, String cidade, String estado) {
-//        this.rua = rua;
-//        this.numero = numero;
-//        this.complemento = complemento;
-//        this.bairro = bairro;
-//        this.cidade = cidade;
-//        this.estado = estado;
-//    }
+    public Endereco(String rua, String numero, String complemento, String bairro, String cidade, String estado) {
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
 
     public String getRua() {
         return rua;
