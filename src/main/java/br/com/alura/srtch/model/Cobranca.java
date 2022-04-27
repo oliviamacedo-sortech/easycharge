@@ -3,43 +3,44 @@ package br.com.alura.srtch.model;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "cobrancas")
+//@Entity
+//@Table(name = "cobrancas")
 public class Cobranca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "data_realizacao")
     private Date dataRealizacao;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "meio_de_contato")
     @Enumerated(EnumType.STRING)
     private MeioContato meioContato;
 
     @Column(nullable = false)
     private String agente;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "tipo_agente")
     @Enumerated(EnumType.STRING)
     private TipoAgente tipoAgente;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 500, name = "comentario_agente")
     private String comentarioAgente;
 
     @Column(length = 500)
     private String acordo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "tipo_acordo")
     @Enumerated(EnumType.STRING)
     private TipoAcordo tipoAcordo;
 
+    @Column(name = "data_promessa_pagamento")
     private Date dataPromessaPagamento;
 
+    @Column(name = "numero_parcelas")
     private int numeroParcelas;
 
     @OneToOne
-    @Column(nullable = false)
     private Divida divida;
 
     public Cobranca() {

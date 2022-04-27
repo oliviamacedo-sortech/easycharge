@@ -25,7 +25,7 @@ public class TesteDao {
         em.getTransaction().begin();
         enderecoDao.cadastrar(endereco);
         clienteDao.cadastrar(cliente);
-        clienteDao.buscarPorNome("Yasmin Ester Lara Nogueira");
+        clienteDao.buscarTodos();
 
         em.getTransaction().commit();
         em.close();

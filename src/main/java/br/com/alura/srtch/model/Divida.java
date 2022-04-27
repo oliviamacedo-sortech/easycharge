@@ -4,27 +4,28 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
-@Table(name= "dividas")
+//@Entity
+//@Table(name= "dividas")
 public class Divida {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "valor_divida")
     private BigDecimal valorDivida;
 
-
+    @Column(name = "data_abertura")
     private Date dataAbertura;
 
+    @Column(name = "data_quitacao")
     private Date dataQuitacao;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "status_divida")
     @Enumerated(EnumType.STRING)
     private StatusDivida statusDivida;
 
-    @Column(length=255)
+    @Column(length=255, name = "descricao_quitacao")
     private String descricaoQuitacao;
 
     @OneToMany

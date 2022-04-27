@@ -27,7 +27,7 @@ public class CobrancaDao {
     }
 
     public List<Cobranca> buscarTodos(){
-        String jpql = "SELECT * FROM Cobranca co";
+        String jpql = "SELECT co FROM Cobranca co";
         return em.createQuery(jpql, Cobranca.class).getResultList();
     }
 }

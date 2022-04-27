@@ -32,17 +32,17 @@ public class ClienteDao {
     }
 
     public List<Cliente> buscarTodos(){
-        String jpql = "SELECT * FROM Cliente c";
+        String jpql = "SELECT c FROM Cliente c";
         return em.createQuery(jpql, Cliente.class).getResultList();
     }
 
     public List<Cliente> buscarPorStatus(StatusCliente statusCliente){
-        String jpql = "SELECT * FROM Cliente c WHERE c.status = :status";
+        String jpql = "SELECT c FROM Cliente c WHERE c.status = :status";
         return em.createQuery(jpql, Cliente.class).setParameter("status", statusCliente).getResultList();
     }
 
     public List<Cliente> buscarPorNome(String nome){
-        String jpql = "SELECT * FROM Cliente c WHERE c.nome = :nome";
+        String jpql = "SELECT c FROM Cliente c WHERE c.nome = :nome";
         return em.createQuery(jpql, Cliente.class).setParameter("nome", nome).getResultList();
     }
 }
