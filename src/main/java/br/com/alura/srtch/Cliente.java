@@ -1,10 +1,27 @@
 package br.com.alura.srtch;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvRecurse;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "clientes")
 public class Cliente {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+
+  @CsvBindByName
+  @Enumerated(EnumType.STRING)
+  private StatusCliente status;
+
+  @OneToOne
+  @CsvRecurse
+  private Endereco endereco;
 
   @CsvBindByName
   private String nome;
@@ -19,31 +36,12 @@ public class Cliente {
   private String email;
 
   @CsvBindByName
-  private String rua;
-
-  @CsvBindByName
-  private String numero;
-
-  @CsvBindByName
-  private String complemento;
-
-  @CsvBindByName
-  private String bairro;
-
-  @CsvBindByName
-  private String cidade;
-
-  @CsvBindByName
-  private String estado;
-
-  @CsvBindByName
   private String profissao;
 
   @CsvBindByName
   private BigDecimal renda;
 
-  @CsvBindByName
-  private StatusCliente status;
+
 
   public String getNome() {
     return nome;
@@ -77,54 +75,6 @@ public class Cliente {
     this.email = email;
   }
 
-  public String getRua() {
-    return rua;
-  }
-
-  public void setRua(String rua) {
-    this.rua = rua;
-  }
-
-  public String getNumero() {
-    return numero;
-  }
-
-  public void setNumero(String numero) {
-    this.numero = numero;
-  }
-
-  public String getComplemento() {
-    return complemento;
-  }
-
-  public void setComplemento(String complemento) {
-    this.complemento = complemento;
-  }
-
-  public String getBairro() {
-    return bairro;
-  }
-
-  public void setBairro(String bairro) {
-    this.bairro = bairro;
-  }
-
-  public String getCidade() {
-    return cidade;
-  }
-
-  public void setCidade(String cidade) {
-    this.cidade = cidade;
-  }
-
-  public String getEstado() {
-    return estado;
-  }
-
-  public void setEstado(String estado) {
-    this.estado = estado;
-  }
-
   public String getProfissao() {
     return profissao;
   }
@@ -139,6 +89,14 @@ public class Cliente {
 
   public void setRenda(BigDecimal renda) {
     this.renda = renda;
+  }
+
+  public Endereco getEndereco() {
+    return endereco;
+  }
+
+  public void setEndereco(Endereco endereco) {
+    this.endereco = endereco;
   }
 
   public StatusCliente getStatus() {
@@ -156,12 +114,12 @@ public class Cliente {
         ", cpf='" + cpf + '\'' +
         ", telefone='" + telefone + '\'' +
         ", email='" + email + '\'' +
-        ", rua='" + rua + '\'' +
-        ", numero='" + numero + '\'' +
-        ", complemento='" + complemento + '\'' +
-        ", bairro='" + bairro + '\'' +
-        ", cidade='" + cidade + '\'' +
-        ", estado='" + estado + '\'' +
+        ", rua='" + endereco.getRua() + '\'' +
+        ", numero='" + endereco.getNumero() + '\'' +
+        ", complemento='" + endereco.getComplemento() + '\'' +
+        ", bairro='" + endereco.getBairro() + '\'' +
+        ", cidade='" + endereco.getCidade() + '\'' +
+        ", estado='" + endereco.getEstado() + '\'' +
         ", profissao='" + profissao + '\'' +
         ", renda=" + renda +
         ", status=" + status +
