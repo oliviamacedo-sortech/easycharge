@@ -1,4 +1,4 @@
-package br.com.alura.srtch;
+package br.com.alura.srtch.model;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvRecurse;
@@ -41,7 +41,16 @@ public class Cliente {
   @CsvBindByName
   private BigDecimal renda;
 
-
+  public Cliente(StatusCliente status, Endereco endereco, String nome, String cpf, String telefone, String email, String profissao, BigDecimal renda) {
+    this.status = status;
+    this.endereco = endereco;
+    this.nome = nome;
+    this.cpf = cpf;
+    this.telefone = telefone;
+    this.email = email;
+    this.profissao = profissao;
+    this.renda = renda;
+  }
 
   public String getNome() {
     return nome;
