@@ -1,5 +1,7 @@
 package br.com.alura.srtch.teste;
 
+import br.com.alura.srtch.dto.ClienteDTO;
+import br.com.alura.srtch.dto.ObjetoCliente;
 import br.com.alura.srtch.model.Cliente;
 import br.com.alura.srtch.service.ClientesPorEstado;
 import br.com.alura.srtch.model.StatusCliente;
@@ -8,12 +10,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.apache.commons.collections.functors.ChainedClosure;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -26,6 +30,7 @@ public class Main {
     String arquivo = args[0];
 
     List<Cliente> clientes;
+
 
     if (arquivo.endsWith(".csv")) {
       try {

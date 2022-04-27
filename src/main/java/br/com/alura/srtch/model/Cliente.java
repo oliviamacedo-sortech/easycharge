@@ -1,8 +1,5 @@
 package br.com.alura.srtch.model;
 
-import com.opencsv.bean.CsvBindByName;
-import com.opencsv.bean.CsvRecurse;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -10,36 +7,32 @@ import java.math.BigDecimal;
 @Table(name = "clientes")
 public class Cliente {
 
+
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-
-  @CsvBindByName
   @Enumerated(EnumType.STRING)
   private StatusCliente status;
 
   @OneToOne
-  @CsvRecurse
   private Endereco endereco;
 
-  @CsvBindByName
   private String nome;
 
-  @CsvBindByName
   private String cpf;
 
-  @CsvBindByName
   private String telefone;
 
-  @CsvBindByName
   private String email;
 
-  @CsvBindByName
   private String profissao;
 
-  @CsvBindByName
   private BigDecimal renda;
+
+  public Cliente() {
+  }
 
   public Cliente(StatusCliente status, Endereco endereco, String nome, String cpf, String telefone, String email, String profissao, BigDecimal renda) {
     this.status = status;
@@ -51,6 +44,7 @@ public class Cliente {
     this.profissao = profissao;
     this.renda = renda;
   }
+
 
   public String getNome() {
     return nome;
