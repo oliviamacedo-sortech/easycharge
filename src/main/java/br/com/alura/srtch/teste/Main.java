@@ -1,5 +1,8 @@
-package br.com.alura.srtch;
+package br.com.alura.srtch.teste;
 
+import br.com.alura.srtch.model.Cliente;
+import br.com.alura.srtch.service.ClientesPorEstado;
+import br.com.alura.srtch.model.StatusCliente;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.bean.CsvToBean;
