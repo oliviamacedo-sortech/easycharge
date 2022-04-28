@@ -2,7 +2,9 @@ package br.com.alura.srtch.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name= "dividas")
@@ -28,8 +30,12 @@ public class Divida {
     @Column(length=255, name = "descricao_quitacao")
     private String descricaoQuitacao;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "divida", cascade = CascadeType.ALL)
+    private final List<Cobranca> cobrancas = new ArrayList<>();
 
     public Divida() {
     }
@@ -38,6 +44,11 @@ public class Divida {
         this.valorDivida = valorDivida;
         this.statusDivida = statusDivida;
         this.cliente = cliente;
+    }
+
+    public void adicionarCobranca(Cobranca cobranca){
+        cobranca.setDivida(this);
+        this.cobrancas.add(cobranca);
     }
 
     public BigDecimal getValorDivida() {

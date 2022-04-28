@@ -76,19 +76,24 @@ public class Main {
       cobrancaDao.cadastrar(cobranca);
     }
 
-    List<Divida> dividasSemCobranca = dividaDao.dividasSemCobranca();
-    for(Divida divida : dividasSemCobranca) {
-      System.out.println(divida);
-    }
+    System.out.println(dividaDao.buscarTodos());
+    dividaDao.remover(dividas.get(1));
+//    dividas.get(1).setStatusDivida(StatusDivida.QUITADA);
+    System.out.println(dividaDao.buscarTodos());
 
-
-    List<Cobranca> cobrancasTipoParcelamento = cobrancaDao.tipoDeAcordo(TipoAcordo.PARCELAMENTO);
-    for(Cobranca cobranca : cobrancasTipoParcelamento) {
-      System.out.println(cobranca);
-    }
-
-    System.out.println(cobrancaDao.contagemCobrancas(clientes.get(0).getCpf())); // cpf primeiro cliente
-
+//    List<Divida> dividasSemCobranca = dividaDao.dividasSemCobranca();
+//    for(Divida divida : dividasSemCobranca) {
+//      System.out.println(divida);
+//    }
+//
+//
+//    List<Cobranca> cobrancasTipoParcelamento = cobrancaDao.tipoDeAcordo(TipoAcordo.PARCELAMENTO);
+//    for(Cobranca cobranca : cobrancasTipoParcelamento) {
+//      System.out.println(cobranca);
+//    }
+//
+//    System.out.println(cobrancaDao.contagemCobrancas(clientes.get(0).getCpf())); // cpf primeiro cliente
+//
 
 
     em.getTransaction().commit();

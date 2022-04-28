@@ -40,7 +40,7 @@ public class Cobranca {
     @Column(name = "numero_parcelas")
     private int numeroParcelas;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Divida divida;
 
     public Cobranca() {
@@ -51,6 +51,7 @@ public class Cobranca {
         this.tipoAgente = tipoAgente;
         this.tipoAcordo = tipoAcordo;
         this.divida = divida;
+
     }
 
     public Date getDataRealizacao() {
