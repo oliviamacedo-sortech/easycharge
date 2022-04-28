@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-//@Entity
-//@Table(name= "dividas")
+@Entity
+@Table(name= "dividas")
 public class Divida {
 
     @Id
@@ -28,7 +28,7 @@ public class Divida {
     @Column(length=255, name = "descricao_quitacao")
     private String descricaoQuitacao;
 
-    @OneToMany
+    @OneToOne
     private Cliente cliente;
 
     public Divida() {

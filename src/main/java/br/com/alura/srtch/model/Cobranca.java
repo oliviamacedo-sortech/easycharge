@@ -3,8 +3,8 @@ package br.com.alura.srtch.model;
 import javax.persistence.*;
 import java.util.Date;
 
-//@Entity
-//@Table(name = "cobrancas")
+@Entity
+@Table(name = "cobrancas")
 public class Cobranca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,10 +2,11 @@ package br.com.alura.srtch.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
-public class Cliente {
+public class Cliente  {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
