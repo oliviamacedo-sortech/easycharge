@@ -1,8 +1,9 @@
 package br.com.alura.srtch.teste;
 
 import br.com.alura.srtch.dao.ClienteDao;
-import br.com.alura.srtch.dao.EnderecoDao;
-import br.com.alura.srtch.model.Cliente;
+import br.com.alura.srtch.dao.CobrancaDao;
+import br.com.alura.srtch.dao.DividaDao;
+import br.com.alura.srtch.model.*;
 import br.com.alura.srtch.service.ClientesPorEstado;
 import br.com.alura.srtch.service.ClientesSuspensos;
 import br.com.alura.srtch.service.LerArquivo;
@@ -10,6 +11,7 @@ import br.com.alura.srtch.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -43,25 +45,53 @@ public class Main {
       System.out.printf("- o estado %s tem %d cliente(s) cadastrado(s).\n", estado, clientesDoEstado.size());
     }
 
-    testesBancos(clientes);
+    List<Divida> dividas = new ArrayList<>();
+    List<Cobranca> cobrancas = new ArrayList<>();
 
-  }
+    dividas.add(new Divida(new BigDecimal(400), StatusDivida.ABERTA, clientes.get(0)));
+    dividas.add(new Divida(new BigDecimal(1200), StatusDivida.ABERTA, clientes.get(0)));
+    dividas.add(new Divida(new BigDecimal(2200), StatusDivida.ABERTA, clientes.get(1)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.EXTERNO, TipoAcordo.PROMESSA, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.INTERNO, TipoAcordo.PROMESSA, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.EXTERNO, TipoAcordo.PARCELAMENTO, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.EXTERNO, TipoAcordo.PROMESSA, dividas.get(1)));
 
-  private static void testesBancos(List<Cliente> clientes) {
+
     EntityManager em = JPAUtil.getEntityManager();
 
     ClienteDao clienteDao = new ClienteDao(em);
-    EnderecoDao enderecoDao = new EnderecoDao(em);
+    CobrancaDao cobrancaDao= new CobrancaDao(em);
+    DividaDao dividaDao = new DividaDao(em);
 
     em.getTransaction().begin();
     for (Cliente cliente : clientes) {
       clienteDao.cadastrar(cliente);
     }
 
-//    clienteDao.buscarPorNome("");
+    for (Divida divida : dividas) {
+      dividaDao.cadastrar(divida);
+    }
+
+    for (Cobranca cobranca : cobrancas) {
+      cobrancaDao.cadastrar(cobranca);
+    }
+
+    List<Divida> dividasSemCobranca = dividaDao.dividasSemCobranca();
+    for(Divida divida : dividasSemCobranca) {
+      System.out.println(divida);
+    }
+
+
+    List<Cobranca> cobrancasTipoParcelamento = cobrancaDao.tipoDeAcordo(TipoAcordo.PARCELAMENTO);
+    for(Cobranca cobranca : cobrancasTipoParcelamento) {
+      System.out.println(cobranca);
+    }
+
+    System.out.println(cobrancaDao.contagemCobrancas(clientes.get(0).getCpf())); // cpf primeiro cliente
+
+
 
     em.getTransaction().commit();
     em.close();
   }
-
 }

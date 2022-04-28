@@ -10,27 +10,27 @@ public class Cobranca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "data_realizacao")
+    @Column(nullable = true, name = "data_realizacao")
     private Date dataRealizacao;
 
-    @Column(nullable = false, name = "meio_de_contato")
+    @Column(nullable = true, name = "meio_de_contato")
     @Enumerated(EnumType.STRING)
     private MeioContato meioContato;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String agente;
 
-    @Column(nullable = false, name = "tipo_agente")
+    @Column(nullable = true, name = "tipo_agente")
     @Enumerated(EnumType.STRING)
     private TipoAgente tipoAgente;
 
-    @Column(nullable = false, length = 500, name = "comentario_agente")
+    @Column(nullable = true, length = 500, name = "comentario_agente")
     private String comentarioAgente;
 
     @Column(length = 500)
     private String acordo;
 
-    @Column(nullable = false, name = "tipo_acordo")
+    @Column(nullable = true, name = "tipo_acordo")
     @Enumerated(EnumType.STRING)
     private TipoAcordo tipoAcordo;
 
@@ -40,22 +40,16 @@ public class Cobranca {
     @Column(name = "numero_parcelas")
     private int numeroParcelas;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Divida divida;
 
     public Cobranca() {
     }
 
-    public Cobranca(Date dataRealizacao, MeioContato meioContato, String agente, TipoAgente tipoAgente, String comentarioAgente, String acordo, TipoAcordo tipoAcordo, Date dataPromessaPagamento, int numeroParcelas, Divida divida) {
-        this.dataRealizacao = dataRealizacao;
+    public Cobranca(MeioContato meioContato, TipoAgente tipoAgente, TipoAcordo tipoAcordo, Divida divida) {
         this.meioContato = meioContato;
-        this.agente = agente;
         this.tipoAgente = tipoAgente;
-        this.comentarioAgente = comentarioAgente;
-        this.acordo = acordo;
         this.tipoAcordo = tipoAcordo;
-        this.dataPromessaPagamento = dataPromessaPagamento;
-        this.numeroParcelas = numeroParcelas;
         this.divida = divida;
     }
 
@@ -138,4 +132,28 @@ public class Cobranca {
     public void setDivida(Divida divida) {
         this.divida = divida;
     }
+
+    @Override
+    public String toString() { //toString de teste
+        return "Cobranca{" +
+                ", meioContato=" + meioContato +
+                ", tipoAgente=" + tipoAgente +
+                ", tipoAcordo=" + tipoAcordo +
+                ", divida=" + divida +
+                '}';
+    }
+//    public String toString() {
+//        return "Cobranca{" +
+//                "dataRealizacao=" + dataRealizacao +
+//                ", meioContato=" + meioContato +
+//                ", agente='" + agente + '\'' +
+//                ", tipoAgente=" + tipoAgente +
+//                ", comentarioAgente='" + comentarioAgente + '\'' +
+//                ", acordo='" + acordo + '\'' +
+//                ", tipoAcordo=" + tipoAcordo +
+//                ", dataPromessaPagamento=" + dataPromessaPagamento +
+//                ", numeroParcelas=" + numeroParcelas +
+//                ", divida=" + divida +
+//                '}';
+//    }
 }

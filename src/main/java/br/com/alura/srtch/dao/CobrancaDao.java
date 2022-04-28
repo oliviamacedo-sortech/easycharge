@@ -1,6 +1,7 @@
 package br.com.alura.srtch.dao;
 
 import br.com.alura.srtch.model.Cobranca;
+import br.com.alura.srtch.model.TipoAcordo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -30,4 +31,15 @@ public class CobrancaDao {
         String jpql = "SELECT co FROM Cobranca co";
         return em.createQuery(jpql, Cobranca.class).getResultList();
     }
+
+    public List<Cobranca> tipoDeAcordo(TipoAcordo tipoAcordo){
+        String jpql = "SELECT co FROM Cobranca co WHERE co.tipoAcordo = :tipoAcordo";
+        return em.createQuery(jpql, Cobranca.class).setParameter("tipoAcordo", tipoAcordo).getResultList();
+    }
+
+    public Long contagemCobrancas(String cpf){
+        String jpql = "SELECT COUNT(co.dataRealizacao) FROM Cobranca co WHERE co.divida.cliente.cpf = :cpf";
+        return em.createQuery(jpql, Long.class).setParameter("cpf", cpf).getSingleResult();
+    }
+
 }

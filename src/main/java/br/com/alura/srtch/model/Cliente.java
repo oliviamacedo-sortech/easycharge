@@ -15,7 +15,7 @@ public class Cliente  {
   @Enumerated(EnumType.STRING)
   private StatusCliente status;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   private Endereco endereco;
 
   private String nome;

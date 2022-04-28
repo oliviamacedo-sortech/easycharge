@@ -28,18 +28,15 @@ public class Divida {
     @Column(length=255, name = "descricao_quitacao")
     private String descricaoQuitacao;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
 
     public Divida() {
     }
 
-    public Divida(BigDecimal valorDivida, Date dataAbertura, Date dataQuitacao, StatusDivida statusDivida, String descricaoQuitacao, Cliente cliente) {
+    public Divida(BigDecimal valorDivida, StatusDivida statusDivida, Cliente cliente) {
         this.valorDivida = valorDivida;
-        this.dataAbertura = dataAbertura;
-        this.dataQuitacao = dataQuitacao;
         this.statusDivida = statusDivida;
-        this.descricaoQuitacao = descricaoQuitacao;
         this.cliente = cliente;
     }
 
@@ -89,5 +86,17 @@ public class Divida {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Divida{" +
+                "valorDivida=" + valorDivida +
+                ", dataAbertura=" + dataAbertura +
+                ", dataQuitacao=" + dataQuitacao +
+                ", statusDivida=" + statusDivida +
+                ", descricaoQuitacao='" + descricaoQuitacao + '\'' +
+                ", cliente=" + cliente +
+                '}';
     }
 }
