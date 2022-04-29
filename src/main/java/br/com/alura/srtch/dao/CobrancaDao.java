@@ -38,7 +38,7 @@ public class CobrancaDao {
     }
 
     public Long contagemCobrancas(String cpf){
-        String jpql = "SELECT COUNT(co.dataRealizacao) FROM Cobranca co WHERE co.divida.cliente.cpf = :cpf";
+        String jpql = "SELECT COUNT(co) FROM Cobranca co WHERE co.divida.cliente.cpf = :cpf";
         return em.createQuery(jpql, Long.class).setParameter("cpf", cpf).getSingleResult();
     }
 

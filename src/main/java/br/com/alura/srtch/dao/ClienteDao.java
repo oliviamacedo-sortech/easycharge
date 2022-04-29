@@ -51,7 +51,8 @@ public class ClienteDao {
 //                "cliente.nome," +
 //                "SUM(divida.valorDivida)," +
 //                "COUNT(cobrancas))" +
-//                "FROM Cobranca";
+//                "FROM Cobranca divida" +
+//                "JOIN divida.cliente";
 //        return em.createQuery(jpql)
 //    }
 }

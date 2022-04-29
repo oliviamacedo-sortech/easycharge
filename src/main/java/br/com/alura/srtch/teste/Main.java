@@ -11,6 +11,7 @@ import br.com.alura.srtch.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,10 +52,10 @@ public class Main {
     dividas.add(new Divida(new BigDecimal(400), StatusDivida.ABERTA, clientes.get(0)));
     dividas.add(new Divida(new BigDecimal(1200), StatusDivida.ABERTA, clientes.get(0)));
     dividas.add(new Divida(new BigDecimal(2200), StatusDivida.ABERTA, clientes.get(1)));
-    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.EXTERNO, TipoAcordo.PROMESSA, dividas.get(0)));
-    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.INTERNO, TipoAcordo.PROMESSA, dividas.get(0)));
-    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.EXTERNO, TipoAcordo.PARCELAMENTO, dividas.get(0)));
-    cobrancas.add(new Cobranca(MeioContato.EMAIL,TipoAgente.EXTERNO, TipoAcordo.PROMESSA, dividas.get(1)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"Jorge",TipoAgente.EXTERNO,"Cobrança feita por tal motivo", TipoAcordo.PROMESSA, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"Pedro",TipoAgente.INTERNO,"Cobrança feita por tal motivo", TipoAcordo.PROMESSA, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"José",TipoAgente.EXTERNO,"Cobrança feita por tal motivo", TipoAcordo.PARCELAMENTO, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"Matheus",TipoAgente.EXTERNO,"Cobrança feita por tal motivo",TipoAcordo.PROMESSA, dividas.get(1)));
 
 
     EntityManager em = JPAUtil.getEntityManager();
@@ -76,24 +77,27 @@ public class Main {
       cobrancaDao.cadastrar(cobranca);
     }
 
-    System.out.println(dividaDao.buscarTodos());
-    dividaDao.remover(dividas.get(1));
+//    System.out.println(dividaDao.buscarTodos());
+//    cobrancaDao.remover(cobrancas.get(3));
+//    dividaDao.remover(dividas.get(1));
+//    dividaDao.atualizar(dividas.get(1));
 //    dividas.get(1).setStatusDivida(StatusDivida.QUITADA);
-    System.out.println(dividaDao.buscarTodos());
+//    System.out.println(dividaDao.buscarTodos());
 
-//    List<Divida> dividasSemCobranca = dividaDao.dividasSemCobranca();
-//    for(Divida divida : dividasSemCobranca) {
-//      System.out.println(divida);
-//    }
+    List<Divida> dividasSemCobranca = dividaDao.dividasSemCobranca();
+    for(Divida divida : dividasSemCobranca) {
+      System.out.println(divida);
+    }
+
+
+    List<Cobranca> cobrancasTipoParcelamento = cobrancaDao.tipoDeAcordo(TipoAcordo.PROMESSA);
+    for(Cobranca cobranca : cobrancasTipoParcelamento) {
+      System.out.println(cobranca);
+    }
+
+    System.out.println(cobrancaDao.contagemCobrancas(clientes.get(0).getCpf())); // cpf primeiro cliente
 //
-//
-//    List<Cobranca> cobrancasTipoParcelamento = cobrancaDao.tipoDeAcordo(TipoAcordo.PARCELAMENTO);
-//    for(Cobranca cobranca : cobrancasTipoParcelamento) {
-//      System.out.println(cobranca);
-//    }
-//
-//    System.out.println(cobrancaDao.contagemCobrancas(clientes.get(0).getCpf())); // cpf primeiro cliente
-//
+    System.out.println(dividaDao.somaDividas("040.141.961-43"));
 
 
     em.getTransaction().commit();

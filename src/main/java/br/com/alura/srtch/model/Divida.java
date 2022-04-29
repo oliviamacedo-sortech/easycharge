@@ -2,6 +2,7 @@ package br.com.alura.srtch.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,17 +16,17 @@ public class Divida {
     private Long id;
 
     @Column(nullable = false, name = "valor_divida")
-    private BigDecimal valorDivida;
+    private BigDecimal valorDivida; //todo deixar só valor
 
     @Column(name = "data_abertura")
-    private Date dataAbertura;
+    private LocalDate dataAbertura = LocalDate.now();
 
     @Column(name = "data_quitacao")
-    private Date dataQuitacao;
+    private LocalDate dataQuitacao;
 
     @Column(nullable = false, name = "status_divida")
     @Enumerated(EnumType.STRING)
-    private StatusDivida statusDivida;
+    private StatusDivida statusDivida = StatusDivida.ABERTA;
 
     @Column(length=255, name = "descricao_quitacao")
     private String descricaoQuitacao;
@@ -59,19 +60,19 @@ public class Divida {
         this.valorDivida = valorDivida;
     }
 
-    public Date getDataAbertura() {
+    public LocalDate getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(Date dataAbertura) {
+    public void setDataAbertura(LocalDate dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
 
-    public Date getDataQuitacao() {
+    public LocalDate getDataQuitacao() {
         return dataQuitacao;
     }
 
-    public void setDataQuitacao(Date dataQuitacao) {
+    public void setDataQuitacao(LocalDate dataQuitacao) {
         this.dataQuitacao = dataQuitacao;
     }
 

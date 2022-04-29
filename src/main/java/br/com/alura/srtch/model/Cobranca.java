@@ -1,6 +1,7 @@
 package br.com.alura.srtch.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -10,27 +11,27 @@ public class Cobranca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true, name = "data_realizacao")
-    private Date dataRealizacao;
+    @Column(nullable = false, name = "data_realizacao")
+    private LocalDate dataRealizacao = LocalDate.now();
 
-    @Column(nullable = true, name = "meio_de_contato")
+    @Column(nullable = false, name = "meio_de_contato")
     @Enumerated(EnumType.STRING)
     private MeioContato meioContato;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String agente;
 
-    @Column(nullable = true, name = "tipo_agente")
+    @Column(nullable = false, name = "tipo_agente")
     @Enumerated(EnumType.STRING)
     private TipoAgente tipoAgente;
 
-    @Column(nullable = true, length = 500, name = "comentario_agente")
+    @Column(nullable = false, length = 500, name = "comentario_agente")
     private String comentarioAgente;
 
     @Column(length = 500)
     private String acordo;
 
-    @Column(nullable = true, name = "tipo_acordo")
+    @Column(nullable = false, name = "tipo_acordo")
     @Enumerated(EnumType.STRING)
     private TipoAcordo tipoAcordo;
 
@@ -46,19 +47,21 @@ public class Cobranca {
     public Cobranca() {
     }
 
-    public Cobranca(MeioContato meioContato, TipoAgente tipoAgente, TipoAcordo tipoAcordo, Divida divida) {
+
+        public Cobranca(MeioContato meioContato, String agente, TipoAgente tipoAgente, String comentarioAgente, TipoAcordo tipoAcordo, Divida divida) {
         this.meioContato = meioContato;
+        this.agente = agente;
         this.tipoAgente = tipoAgente;
+        this.comentarioAgente = comentarioAgente;
         this.tipoAcordo = tipoAcordo;
         this.divida = divida;
-
     }
 
-    public Date getDataRealizacao() {
+    public LocalDate getDataRealizacao() {
         return dataRealizacao;
     }
 
-    public void setDataRealizacao(Date dataRealizacao) {
+    public void setDataRealizacao(LocalDate dataRealizacao) {
         this.dataRealizacao = dataRealizacao;
     }
 
