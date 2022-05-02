@@ -13,27 +13,19 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CsvBindByName
-    @JsonProperty("rua")
     private String rua;
 
-    @CsvBindByName
     private String numero;
 
-    @CsvBindByName
     private String complemento;
 
-    @CsvBindByName
     private String bairro;
 
-    @CsvBindByName
     private String cidade;
 
-    @CsvBindByName
     private String estado;
 
     public Endereco(){}
-
 
     public Endereco(String rua, String numero, String complemento, String bairro, String cidade, String estado) {
         this.rua = rua;

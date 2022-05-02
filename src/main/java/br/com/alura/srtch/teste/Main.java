@@ -1,18 +1,18 @@
 package br.com.alura.srtch.teste;
 
-import br.com.alura.srtch.model.Cliente;
+import br.com.alura.srtch.dao.ClienteDao;
+import br.com.alura.srtch.dao.CobrancaDao;
+import br.com.alura.srtch.dao.DividaDao;
+import br.com.alura.srtch.model.*;
 import br.com.alura.srtch.service.ClientesPorEstado;
-import br.com.alura.srtch.model.StatusCliente;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
+import br.com.alura.srtch.service.ClientesSuspensos;
+import br.com.alura.srtch.service.LerArquivo;
+import br.com.alura.srtch.util.JPAUtil;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -24,31 +24,8 @@ public class Main {
 
     String arquivo = args[0];
 
-    List<Cliente> clientes;
+    List<Cliente> clientes = new LerArquivo().leituraArquivo(arquivo);
 
-    if (arquivo.endsWith(".csv")) {
-      try {
-        Reader reader = new FileReader(arquivo);
-        CsvToBean<Cliente> csvToBean = new CsvToBeanBuilder<Cliente>(reader)
-            .withType(Cliente.class)
-            .build();
-        clientes = csvToBean.parse();
-      } catch (IOException ex) {
-        throw new IllegalStateException(ex);
-      }
-    } else if (arquivo.endsWith(".json")) {
-      try {
-        Reader reader = new FileReader(arquivo);
-        ObjectMapper mapper = new ObjectMapper();
-
-        clientes = mapper.readValue(reader, new TypeReference<>() {
-        });
-      } catch (IOException ex) {
-        throw new IllegalStateException(ex);
-      }
-    } else {
-      throw new IllegalArgumentException("Formato de arquivo inválido: " + arquivo);
-    }
 
     System.out.println("# Limites de dívidas dos clientes");
     for (Cliente cliente : clientes) {
@@ -56,18 +33,7 @@ public class Main {
       System.out.printf("- o limite máximo de dívida para %s é de R$ %.2f.\n", cliente.getNome(), limiteDivida);
     }
 
-    BigDecimal somaRendaClientesSuspensos = BigDecimal.ZERO;
-    int numeroClientesSuspensos = 0;
-    for (Cliente cliente : clientes) {
-      if (StatusCliente.SUSPENSO.equals(cliente.getStatus())) {
-        numeroClientesSuspensos++;
-        somaRendaClientesSuspensos = somaRendaClientesSuspensos.add(cliente.getRenda());
-      }
-    }
-    BigDecimal mediaRendaClientesSuspensos = somaRendaClientesSuspensos.divide(BigDecimal.valueOf(numeroClientesSuspensos), 2, RoundingMode.HALF_UP);
-
-    System.out.printf("\nHá %s clientes suspensos.\n", numeroClientesSuspensos);
-    System.out.printf("A média de renda dos clientes suspensos é de R$ %.2f\n\n", mediaRendaClientesSuspensos);
+    new ClientesSuspensos().somaRendaClientesSuspensos(clientes);
 
 
     ClientesPorEstado clientesPorEstado = new ClientesPorEstado();
@@ -80,7 +46,61 @@ public class Main {
       System.out.printf("- o estado %s tem %d cliente(s) cadastrado(s).\n", estado, clientesDoEstado.size());
     }
 
+    List<Divida> dividas = new ArrayList<>();
+    List<Cobranca> cobrancas = new ArrayList<>();
 
+    dividas.add(new Divida(new BigDecimal(400), StatusDivida.ABERTA, clientes.get(0)));
+    dividas.add(new Divida(new BigDecimal(1200), StatusDivida.ABERTA, clientes.get(0)));
+    dividas.add(new Divida(new BigDecimal(2200), StatusDivida.ABERTA, clientes.get(1)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"Jorge",TipoAgente.EXTERNO,"Cobrança feita por tal motivo", TipoAcordo.PROMESSA, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"Pedro",TipoAgente.INTERNO,"Cobrança feita por tal motivo", TipoAcordo.PROMESSA, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"José",TipoAgente.EXTERNO,"Cobrança feita por tal motivo", TipoAcordo.PARCELAMENTO, dividas.get(0)));
+    cobrancas.add(new Cobranca(MeioContato.EMAIL,"Matheus",TipoAgente.EXTERNO,"Cobrança feita por tal motivo",TipoAcordo.PROMESSA, dividas.get(1)));
+
+
+    EntityManager em = JPAUtil.getEntityManager();
+
+    ClienteDao clienteDao = new ClienteDao(em);
+    CobrancaDao cobrancaDao= new CobrancaDao(em);
+    DividaDao dividaDao = new DividaDao(em);
+
+    em.getTransaction().begin();
+    for (Cliente cliente : clientes) {
+      clienteDao.cadastrar(cliente);
+    }
+
+    for (Divida divida : dividas) {
+      dividaDao.cadastrar(divida);
+    }
+
+    for (Cobranca cobranca : cobrancas) {
+      cobrancaDao.cadastrar(cobranca);
+    }
+
+//    System.out.println(dividaDao.buscarTodos());
+//    cobrancaDao.remover(cobrancas.get(3));
+//    dividaDao.remover(dividas.get(1));
+//    dividaDao.atualizar(dividas.get(1));
+//    dividas.get(1).setStatusDivida(StatusDivida.QUITADA);
+//    System.out.println(dividaDao.buscarTodos());
+
+    List<Divida> dividasSemCobranca = dividaDao.dividasSemCobranca();
+    for(Divida divida : dividasSemCobranca) {
+      System.out.println(divida);
+    }
+
+
+    List<Cobranca> cobrancasTipoParcelamento = cobrancaDao.tipoDeAcordo(TipoAcordo.PROMESSA);
+    for(Cobranca cobranca : cobrancasTipoParcelamento) {
+      System.out.println(cobranca);
+    }
+
+    System.out.println(cobrancaDao.contagemCobrancas(clientes.get(0).getCpf())); // cpf primeiro cliente
+//
+    System.out.println(dividaDao.somaDividas("040.141.961-43"));
+
+
+    em.getTransaction().commit();
+    em.close();
   }
-
 }
