@@ -5,6 +5,16 @@
     <title>Lista de clientes</title>
 </head>
 <body>
-    Oi!
+    <div th:each="cliente : ${clientes}">
+        <div>Nome do Cliente: <span th:text="${cliente.nome}">nome</span></div>
+        <div>CPF: <span th:text="${cliente.cpf}">cpf</span></div>
+        <div>Telefone: <span th:text="${cliente.telefone}">telefone</span></div>
+        <div>Status: <span th:text="${cliente.status}">status</span></div>
+        <div>Email: <span th:text="${cliente.email}">email</span></div>
+        <div>Profissão: <span th:text="${cliente.profissao}">profissao</span></div>
+        <div>Renda: <span th:text="${cliente.renda}">renda</span></div>
+        <div>Endereço: <span th:text="${cliente.endereco.cidade}">endereco</span>/<span th:text="${cliente.endereco.estado}"></span></div>
+
+    </div>
 </body>
 </html>
