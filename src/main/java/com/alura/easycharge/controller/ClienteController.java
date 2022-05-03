@@ -1,27 +1,24 @@
 package com.alura.easycharge.controller;
 
 import com.alura.easycharge.models.Cliente;
+import com.alura.easycharge.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 @Controller
 public class ClienteController {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @GetMapping("/listaCliente")
     public String lista(Model model){
 
-        Query query = entityManager.createQuery("select c from Cliente c", Cliente.class);
-        List<Cliente> clientes = query.getResultList();
-
+        List<Cliente> clientes = clienteRepository.findAll();
         model.addAttribute("clientes", clientes);
         return "listaCliente";
     }
