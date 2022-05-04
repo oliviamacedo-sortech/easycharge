@@ -1,6 +1,6 @@
 package com.alura.easycharge.controller;
 
-import com.alura.easycharge.dto.RequisicaoNovoCliente;
+import com.alura.easycharge.dto.ClienteDTO;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +20,14 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @GetMapping("formulario")
-    public String formulario(){
+    public String formulario(ClienteDTO requisicao){
         return "cliente/formulario";
     }
 
     @PostMapping("novo")
-    public String novo(@Valid RequisicaoNovoCliente requisicao, BindingResult result){
+    public String novo(@Valid ClienteDTO requisicao, BindingResult result){
         if (result.hasErrors()){
-            return "pedido/formulario";
+            return "cliente/formulario";
         }
 
         Cliente cliente = requisicao.toCliente();

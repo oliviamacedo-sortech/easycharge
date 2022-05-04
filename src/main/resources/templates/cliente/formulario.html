@@ -7,48 +7,51 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
 <body>
+    <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+        <a href="listaCliente"><button class="btn btn-outline-secondary my-2 my-sm-0">Voltar</button></a>
+    </nav>
     <div class="container">
         <div class="jumbotron mb-0">
             <h1 class="display-4">Novo Cliente</h1>
         </div>
         <div class="card mt-3 mb-2">
-            <form th:object="${requisicaoNovoCliente}" class="card-body" action="/cliente/novo" method="post">
+            <form th:object="${clienteDTO}" class="card-body" action="/cliente/novo" method="post">
                 <div class="form-group">
                     <label for="nomeCliente">Cliente</label>
-                    <input th:field="*{nomeCliente}" class="form-control" placeholder="nome do cliente">
+                    <input th:field="*{nomeCliente}" class="form-control" placeholder="nome do cliente" required>
                     <small>Informe o nome do cliente</small>
                 </div>
                 <div class="form-group">
                     <label for="cpfCliente">CPF</label>
-                    <input th:field="*{cpfCliente}" class="form-control" placeholder="___.___.___-__">
+                    <input th:field="*{cpfCliente}" class="form-control" placeholder="___.___.___-__" required>
                 </div>
                 <div class="form-group">
                     <label for="telefoneCliente">Telefone</label>
-                    <input th:field="*{telefoneCliente}" class="form-control" placeholder="(xx) xxxxx-xxxx">
+                    <input type="tel" th:field="*{telefoneCliente}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
                 </div>
                 <div class="form-group">
                     <label for="emailCliente">Email</label>
-                    <input th:field="*{emailCliente}" class="form-control" placeholder="fulano@gmail.com">
+                    <input type="email" th:field="*{emailCliente}" class="form-control" placeholder="fulano@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="profissaoCliente">Profissão</label>
-                    <input th:field="*{profissaoCliente}" class="form-control" placeholder="profissão do cliente">
+                    <input th:field="*{profissaoCliente}" class="form-control" placeholder="profissão do cliente" required>
                 </div>
                 <div class="form-group">
                     <label for="rendaCliente">Renda</label>
-                    <input th:field="*{rendaCliente}" class="form-control" placeholder="000.00">
+                    <input th:field="*{rendaCliente}" class="form-control" placeholder="000.00" required>
                 </div>
                 <div class="form-group">
                     <label for="statusCliente">Status do Cliente</label>
-                    <input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO">
+                    <input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO" required>
                 </div>
                 <div class="form-group">
                     <label for="ruaEnderecoCliente">Rua</label>
-                    <input th:field="*{ruaEnderecoCliente}" class="form-control" placeholder="Av.Fulano de tal">
+                    <input th:field="*{ruaEnderecoCliente}" class="form-control" placeholder="Av.Fulano de tal" required>
                 </div>
                 <div class="form-group">
                     <label for="numeroEnderecoCliente">Número</label>
-                    <input th:field="*{numeroEnderecoCliente}" class="form-control" placeholder="1003">
+                    <input th:field="*{numeroEnderecoCliente}" class="form-control" placeholder="1003" required>
                 </div>
                 <div class="form-group">
                     <label for="complementoEnderecoCliente">Complemento</label>
@@ -56,15 +59,15 @@
                 </div>
                 <div class="form-group">
                     <label for="bairroEnderecoCliente">Bairro</label>
-                    <input th:field="*{bairroEnderecoCliente}" class="form-control" placeholder="">
+                    <input th:field="*{bairroEnderecoCliente}" class="form-control" placeholder="" required>
                 </div>
                 <div class="form-group">
                     <label for="cidadeEnderecoCliente">Cidade</label>
-                    <input th:field="*{cidadeEnderecoCliente}" class="form-control" placeholder="Brasília">
+                    <input th:field="*{cidadeEnderecoCliente}" class="form-control" placeholder="Brasília" required>
                 </div>
                 <div class="form-group">
                     <label for="estadoEnderecoCliente">Estado</label>
-                    <input th:field="*{estadoEnderecoCliente}" class="form-control" placeholder="DF">
+                    <input th:field="*{estadoEnderecoCliente}" class="form-control" placeholder="DF" required>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
             </form>
