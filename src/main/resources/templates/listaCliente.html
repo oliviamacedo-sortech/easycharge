@@ -8,39 +8,43 @@
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
-        <!-- <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="">Todos</a>
-            <a class="nav-item nav-link" href="">Aguardando</a>
-            <a class="nav-item nav-link" href="">Aprovado</a>
-            <a class="nav-item nav-link" href="">Entregue</a>
-        </div> -->
-        <a href="cliente/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
+        <div class="navbar-nav">
+            <h3 class="m-lg-3">EasyCharge</h3>
+        </div>
+        <a href="cliente/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0 m-lg-2">Novo Cliente</button></a>
     </nav>
-
-    <div class="jumbotron mb-0">
-        <h1 class="display-4">Lista de Clientes</h1>
+    <div class="container">
+        <div class="jumbotron mb-0">
+            <h1 class="display-4">Lista de Clientes</h1>
+        </div>
+        <div class="justify-content-center card mt-3 mb-2 $teal-200"></div>
+            <form action="" class="card-body" method="post">
+                    <table class="table" th:each="cliente : ${clientes}">
+                        <tr>
+                            <th scope="col">Nome do Cliente: </th> 
+                            <th scope="col">CPF: </th>
+                            <th scope="col">Telefone: </th>
+                            <th scope="col">Status: </th>
+                            <th scope="col">Email: </th>
+                            <th scope="col">Profissão: </th>
+                            <th scope="col">Renda: </th>
+                            <th scope="col">Local: </th>
+                        </tr>
+                        <tr>
+                            <td><span th:text="${cliente.nome}">nome</span></td>
+                            <td><span th:text="${cliente.cpf}">cpf</span></td>
+                            <td><span th:text="${cliente.telefone}">telefone</td>
+                            <td><span th:text="${cliente.status}">status</span></td>
+                            <td><span th:text="${cliente.email}">email</span></td>
+                            <td><span th:text="${cliente.profissao}">profissao</span></td>
+                            <td><span th:text="${cliente.renda}">renda</span></td>
+                            <td><span th:text="${cliente.endereco.cidade}">local</span>/<span th:text="${cliente.endereco.estado}"></span></td>
+                            <td><button th:href="@{/cliente/{cliente}+ ${clienteController.delete}}" class="btn btn-danger mt-3" type="submit">Deletar</button></td>
+                            <td><button class="btn btn-warning mt-3" type="submit">Atualizar</button></td>
+                        </tr>
+                    </table>
+            </form>
+        </div>
     </div>
-    <table class="table" th:each="cliente : ${clientes}">
-        <tr>
-            <th scope="col">Nome do Cliente: </th> 
-            <th scope="col">CPF: </th>
-            <th scope="col">Telefone: </th>
-            <th scope="col">Status: </th>
-            <th scope="col">Email: </th>
-            <th scope="col">Profissão: </th>
-            <th scope="col">Renda: </th>
-            <th scope="col">Local: </th>
-        </tr>
-        <tr>
-            <td><span th:text="${cliente.nome}">nome</span></td>
-            <td><span th:text="${cliente.cpf}">cpf</span></td>
-            <td><span th:text="${cliente.telefone}">telefone</td>
-            <td><span th:text="${cliente.status}">status</span></td>
-            <td><span th:text="${cliente.email}">email</span></td>
-            <td><span th:text="${cliente.profissao}">profissao</span></td>
-            <td><span th:text="${cliente.renda}">renda</span></td>
-            <td><span th:text="${cliente.endereco.cidade}">local</span>/<span th:text="${cliente.endereco.estado}"></span></td>
-        </tr>
-    </table>
 </body>
 </html>

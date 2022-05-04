@@ -34,4 +34,11 @@ public class ClienteController {
         clienteRepository.save(cliente);
         return "cliente/formulario";
     }
+
+    @PostMapping("atualizado")
+    public String delete(Long id){
+        Cliente cliente = clienteRepository.getById(id);
+        clienteRepository.delete(cliente);
+        return "listaCliente";
+    }
 }

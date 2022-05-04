@@ -8,7 +8,7 @@
     </head>
 <body>
     <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
-        <a href="listaCliente"><button class="btn btn-outline-secondary my-2 my-sm-0">Voltar</button></a>
+       <!--<a href="listaCliente.html"><button class="btn btn-outline-secondary my-2 my-sm-0 m-lg-2">Voltar</button></a>-->
     </nav>
     <div class="container">
         <div class="jumbotron mb-0">
@@ -19,39 +19,69 @@
                 <div class="form-group">
                     <label for="nomeCliente">Cliente</label>
                     <input th:field="*{nomeCliente}" class="form-control" placeholder="nome do cliente" required>
-                    <small>Informe o nome do cliente</small>
+                    <div th:erros="*{nomeCliente}">
+                        Erros do nome do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cpfCliente">CPF</label>
                     <input th:field="*{cpfCliente}" class="form-control" placeholder="___.___.___-__" required>
+                    <div th:erros="*{cpfCliente}">
+                        Erros do cpf do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="telefoneCliente">Telefone</label>
                     <input type="tel" th:field="*{telefoneCliente}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
+                    <div th:erros="*{telefoneCliente}">
+                        Erros do telefone do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="emailCliente">Email</label>
                     <input type="email" th:field="*{emailCliente}" class="form-control" placeholder="fulano@gmail.com" required>
+                    <div th:erros="*{emailCliente}">
+                        Erros do email do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="profissaoCliente">Profissão</label>
                     <input th:field="*{profissaoCliente}" class="form-control" placeholder="profissão do cliente" required>
+                    <div th:erros="*{profissaoCliente}">
+                        Erros da profissao do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="rendaCliente">Renda</label>
                     <input th:field="*{rendaCliente}" class="form-control" placeholder="000.00" required>
+                    <div th:erros="*{rendaCliente}">
+                        Erros da renda do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="statusCliente">Status do Cliente</label>
-                    <input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO" required>
+                    <!--<input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO" required>-->
+                    <select th:field="*{statusCliente}" class="form-control" required>
+                        <option value="SUSPENSO">SUSPENSO</option>
+                        <option value="ATIVO">ATIVO</option>
+                    </select>
+                    <div th:erros="*{statusCliente}">
+                        Erros do status do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="ruaEnderecoCliente">Rua</label>
                     <input th:field="*{ruaEnderecoCliente}" class="form-control" placeholder="Av.Fulano de tal" required>
+                    <div th:erros="*{ruaEnderecoCliente}">
+                        Erros da rua do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="numeroEnderecoCliente">Número</label>
                     <input th:field="*{numeroEnderecoCliente}" class="form-control" placeholder="1003" required>
+                    <div th:erros="*{numeroEnderecoCliente}">
+                        Erros do numero do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="complementoEnderecoCliente">Complemento</label>
@@ -60,14 +90,23 @@
                 <div class="form-group">
                     <label for="bairroEnderecoCliente">Bairro</label>
                     <input th:field="*{bairroEnderecoCliente}" class="form-control" placeholder="" required>
+                    <div th:erros="*{bairroEnderecoCliente}">
+                        Erros do bairro do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cidadeEnderecoCliente">Cidade</label>
                     <input th:field="*{cidadeEnderecoCliente}" class="form-control" placeholder="Brasília" required>
+                    <div th:erros="*{cidadeEnderecoCliente}">
+                        Erros da cidade do cliente
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="estadoEnderecoCliente">Estado</label>
                     <input th:field="*{estadoEnderecoCliente}" class="form-control" placeholder="DF" required>
+                    <div th:erros="*{estadoEnderecoCliente}">
+                        Erros do estado do cliente
+                    </div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
             </form>
