@@ -44,6 +44,9 @@ public class Cliente  {
         this.renda = renda;
     }
 
+    public Long getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;

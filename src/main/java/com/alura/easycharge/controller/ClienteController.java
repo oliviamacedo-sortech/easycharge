@@ -29,16 +29,10 @@ public class ClienteController {
         if (result.hasErrors()){
             return "cliente/formulario";
         }
-
         Cliente cliente = requisicao.toCliente();
         clienteRepository.save(cliente);
-        return "cliente/formulario";
+        return "redirect:/listaCliente";
     }
 
-    @PostMapping("atualizado")
-    public String delete(Long id){
-        Cliente cliente = clienteRepository.getById(id);
-        clienteRepository.delete(cliente);
-        return "listaCliente";
-    }
+
 }

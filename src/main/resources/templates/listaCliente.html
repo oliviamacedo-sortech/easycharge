@@ -39,8 +39,14 @@
                             <td><span th:text="${cliente.profissao}">profissao</span></td>
                             <td><span th:text="${cliente.renda}">renda</span></td>
                             <td><span th:text="${cliente.endereco.cidade}">local</span>/<span th:text="${cliente.endereco.estado}"></span></td>
-                            <td><button th:href="@{/cliente/{cliente}+ ${clienteController.delete}}" class="btn btn-danger mt-3" type="submit">Deletar</button></td>
-                            <td><button class="btn btn-warning mt-3" type="submit">Atualizar</button></td>
+                            <td>
+                                <a class="btn btn-danger" role="button"
+                                th:href="@{/delete(id=${cliente.id})}">Excluir</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" role="button"
+                                th:href="@{/alterar(id=${cliente.id})}">Alterar Status</a>
+                            </td>
                         </tr>
                     </table>
             </form>
