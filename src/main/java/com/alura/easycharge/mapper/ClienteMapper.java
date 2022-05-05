@@ -26,4 +26,16 @@ public class ClienteMapper {
         }
         return clientes;
     }
+
+    public Cliente alterar(Cliente cliente, ClienteDTO dto){
+        cliente.setCpf(dto.getCpfCliente());
+        cliente.setEmail(dto.getEmailCliente());
+        cliente.setNome(dto.getNomeCliente());
+        cliente.setProfissao(dto.getProfissaoCliente());
+        cliente.setRenda(dto.getRendaCliente());
+        cliente.setTelefone(dto.getTelefoneCliente());
+        cliente.setStatus(dto.getStatusCliente());
+        cliente.setEndereco(new Endereco(dto.getRuaEnderecoCliente(), dto.getNumeroEnderecoCliente(), dto.getComplementoEnderecoCliente(), dto.getBairroEnderecoCliente(), dto.getCidadeEnderecoCliente(), dto.getEstadoEnderecoCliente()));
+        return cliente;
+    }
 }

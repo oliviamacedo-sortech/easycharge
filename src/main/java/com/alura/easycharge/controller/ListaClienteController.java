@@ -1,6 +1,7 @@
 package com.alura.easycharge.controller;
 
 import com.alura.easycharge.dto.ClienteDTO;
+import com.alura.easycharge.mapper.ClienteMapper;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.StatusCliente;
 import com.alura.easycharge.repository.ClienteRepository;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -51,53 +53,22 @@ public class ListaClienteController {
     }
 
     @GetMapping("/editar")
-    public String getEditForm(Model model, Long id) {
+    public String atualizar(Model model, Long id) {
         Cliente cliente = clienteRepository.getById(id);
-        model.addAttribute("cliente", cliente);
-        return "redirect:cliente/formulario";
+        model.addAttribute("clientes", cliente);
+        return "cliente/alterarCliente";
     }
 
-    // request mapping method to submit edited details
-    @PostMapping("/editar")
-    public String submitForm(@ModelAttribute Cliente cliente, Model model) {
-        model.addAttribute("cliente", cliente);
+    @PostMapping("/cliente/alterarCliente")
+    public String atualizar(@Valid ClienteDTO dto, BindingResult result){
+        if (result.hasErrors()){
+            return "cliente/formulario";
+       }
+        Cliente cliente = clienteRepository.getById(dto.getId());
+        ClienteMapper map = new ClienteMapper();
+        cliente = map.alterar(cliente,dto);
+        clienteRepository.save(cliente);
         return "redirect:/listaCliente";
     }
 
-//    @GetMapping("/editar")
-//    public ModelAndView editar(@RequestParam Long id, ClienteDTO requisicao, BindingResult result)  {
-//        Cliente cliente = clienteRepository.getById(id);
-//
-//        ModelAndView mav = new ModelAndView("cliente/formulario");
-//        if (result.hasErrors()) {
-//            mav.setViewName("editar");
-//            mav.addObject("cliente", requisicao);
-//
-//            return mav;
-//        }
-//
-//        clienteRepository.save(cliente);
-//
-//        mav.setViewName("redirect:cliente/formulario");
-//
-//        return mav;
-//
-//
-//
-//    }
-//        Cliente cliente = requisicao.toCliente();
-//        clienteRepository.findById(id).get();
-//        ModelAndView mav = new ModelAndView("cliente/formulario");
-//        mav.addObject("cliente", cliente);
-//        return mav;
-
-
-//    public String novo(@Valid ClienteDTO requisicao, BindingResult result){
-//        if (result.hasErrors()){
-//            return "cliente/formulario";
-//        }
-//        Cliente cliente = requisicao.toCliente();
-//        clienteRepository.save(cliente);
-//        return "redirect:/listaCliente";
-//    }
 }

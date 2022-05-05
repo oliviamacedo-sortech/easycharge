@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 
 public class ClienteDTO {
 
+    private Long id;
+
     @NotBlank(message = "Nome do cliente é obrigatório")
     private String nomeCliente;
 
@@ -49,6 +51,10 @@ public class ClienteDTO {
 
     @NotNull
     private StatusCliente statusCliente;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getNomeCliente() {
         return nomeCliente;
