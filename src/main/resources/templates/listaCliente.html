@@ -40,12 +40,16 @@
                             <td><span th:text="${cliente.renda}">renda</span></td>
                             <td><span th:text="${cliente.endereco.cidade}">local</span>/<span th:text="${cliente.endereco.estado}"></span></td>
                             <td>
-                                <a class="btn btn-danger" role="button"
-                                th:href="@{/delete(id=${cliente.id})}">Excluir</a>
+                                <a class="btn btn-warning" role="button"
+                                th:href="@{/alterarStatus(id=${cliente.id})}">Alterar Status</a>
                             </td>
                             <td>
-                                <a class="btn btn-warning" role="button"
-                                th:href="@{/alterar(id=${cliente.id})}">Alterar Status</a>
+                                <a class="btn btn-info" role="button"
+                                th:href="@{/editar(id=${cliente.id})}">Editar Cliente</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" role="button"
+                                th:href="@{/delete(id=${cliente.id})}">Excluir</a>
                             </td>
                         </tr>
                     </table>
