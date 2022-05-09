@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ClienteDTO {
 
@@ -51,6 +52,24 @@ public class ClienteDTO {
 
     @NotNull
     private StatusCliente statusCliente;
+
+    public ClienteDTO(Long id, String nomeCliente, String cpfCliente, String telefoneCliente, String emailCliente, String ruaEnderecoCliente, String numeroEnderecoCliente, String complementoEnderecoCliente, String bairroEnderecoCliente, String cidadeEnderecoCliente, String estadoEnderecoCliente, String profissaoCliente, BigDecimal rendaCliente, StatusCliente statusCliente) {
+        this.id = id;
+        this.nomeCliente = nomeCliente;
+        this.cpfCliente = cpfCliente;
+        this.telefoneCliente = telefoneCliente;
+        this.emailCliente = emailCliente;
+        this.ruaEnderecoCliente = ruaEnderecoCliente;
+        this.numeroEnderecoCliente = numeroEnderecoCliente;
+        this.complementoEnderecoCliente = complementoEnderecoCliente;
+        this.bairroEnderecoCliente = bairroEnderecoCliente;
+        this.cidadeEnderecoCliente = cidadeEnderecoCliente;
+        this.estadoEnderecoCliente = estadoEnderecoCliente;
+        this.profissaoCliente = profissaoCliente;
+        this.rendaCliente = rendaCliente;
+        this.statusCliente = statusCliente;
+    }
+
 
     public Long getId() {
         return id;
@@ -173,4 +192,5 @@ public class ClienteDTO {
 
         return cliente;
     }
+
 }

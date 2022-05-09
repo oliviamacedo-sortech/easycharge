@@ -22,44 +22,27 @@
                 <div class="form-group">
                     <label for="nome">Cliente</label>
                     <input th:name="nome" id="nome" th:value="${cliente.nome}" class="form-control" placeholder="nome do cliente" required>
-                    <div th:errors="*{nome}">
-                        Erros do nome do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
                     <input th:name="cpf" id="cpf" th:value="${cliente.cpf}" class="form-control" placeholder="___.___.___-__" required>
-                    <div th:errors="*{cpf}">
-                        Erros do cpf do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
                     <input type="tel" th:name="telefone" id="telefone" th:value="${cliente.telefone}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
-                    <div th:errors="*{telefone}">
-                        Erros do telefone do cliente
-                    </div>
+
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" th:name="email" id="email" th:value="${cliente.email}" class="form-control" placeholder="fulano@gmail.com" required>
-                    <div th:errors="*{email}">
-                        Erros do email do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="profissao">Profissão</label>
                     <input th:name="profissao" id="profissao" th:value="${cliente.profissao}" class="form-control" placeholder="profissão do cliente" required>
-                    <div th:errors="*{profissao}">
-                        Erros da profissao do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="renda">Renda</label>
                     <input th:name="renda" id="renda" th:value="${cliente.renda}" class="form-control" placeholder="000.00" required>
-                    <div th:errors="*{renda}">
-                        Erros da renda do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="status">Status do Cliente</label>
@@ -67,23 +50,14 @@
                         <option value="SUSPENSO">SUSPENSO</option>
                         <option value="ATIVO">ATIVO</option>
                     </select>
-                    <div th:errors="*{status}">
-                        Erros do status do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cliente.endereco.rua">Rua</label>
                     <input th:name="rua" id="rua" th:value="${cliente.endereco.rua}" class="form-control" placeholder="Av.Fulano de tal" required>
-                    <div th:errors="*{cliente.endereco.rua}">
-                        Erros da rua do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cliente.endereco.numero">Número</label>
                     <input th:name="numero" id="numero" th:value="${cliente.endereco.numero}" class="form-control" placeholder="1003" required>
-                    <div th:errors="*{cliente.endereco.numero}">
-                        Erros do numero do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cliente.endereco.complemento">Complemento</label>
@@ -92,23 +66,14 @@
                 <div class="form-group">
                     <label for="cliente.endereco.bairro">Bairro</label>
                     <input th:name="bairro" id="bairro" th:value="${cliente.endereco.bairro}" class="form-control" placeholder="" required>
-                    <div th:errors="*{cliente.endereco.bairro}">
-                        Erros do bairro do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cliente.endereco.cidade">Cidade</label>
                     <input th:name="cidade" id="cidade" th:value="${cliente.endereco.cidade}" class="form-control" placeholder="Brasília" required>
-                    <div th:errors="*{cliente.endereco.cidade}">
-                        Erros da cidade do cliente
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cliente.endereco.estado">Estado</label>
                     <input th:name="estado" id="estado" th:value="${cliente.endereco.estado}" class="form-control" placeholder="DF" required>
-                    <div th:errors="*{cliente.endereco.estado}">
-                        Erros do estado do cliente
-                    </div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Alterar</button>
             </form>
