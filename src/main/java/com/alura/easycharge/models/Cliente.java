@@ -1,5 +1,8 @@
 package com.alura.easycharge.models;
 
+import com.alura.easycharge.repository.ClienteRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -29,6 +32,7 @@ public class Cliente  {
     private String profissao;
 
     private BigDecimal renda;
+
 
     public Cliente() {
     }
@@ -129,5 +133,14 @@ public class Cliente  {
                 ", renda=" + renda +
                 ", status=" + status +
                 '}';
+    }
+
+    public Cliente alteracaoStatus(Cliente cliente){
+        if (cliente.getStatus().equals(StatusCliente.ATIVO)){
+            cliente.setStatus(StatusCliente.SUSPENSO);
+        } else {
+            cliente.setStatus(StatusCliente.ATIVO);
+        }
+        return cliente;
     }
 }

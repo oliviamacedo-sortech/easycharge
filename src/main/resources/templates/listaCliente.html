@@ -19,7 +19,7 @@
         </div>
         <div class="justify-content-center card mt-3 mb-2 $teal-200"></div>
             <form action="" class="card-body" method="post">
-                    <table class="table" th:each="cliente : ${clientes}">
+                    <table class="table" >
                         <tr>
                             <th scope="col">Nome do Cliente: </th> 
                             <th scope="col">CPF: </th>
@@ -30,7 +30,7 @@
                             <th scope="col">Renda: </th>
                             <th scope="col">Local: </th>
                         </tr>
-                        <tr>
+                        <tr th:each="cliente : ${clientes}">
                             <td><span th:text="${cliente.nome}">nome</span></td>
                             <td><span th:text="${cliente.cpf}">cpf</span></td>
                             <td><span th:text="${cliente.telefone}">telefone</td>
