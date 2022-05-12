@@ -1,24 +1,18 @@
 package com.alura.easycharge.form;
 
 import com.alura.easycharge.models.Cliente;
-import com.alura.easycharge.models.Cobranca;
 import com.alura.easycharge.models.StatusDivida;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DividaForm {
 
     @NotNull
     @Positive
-
     private BigDecimal valor;
 
     @NotNull
@@ -33,36 +27,70 @@ public class DividaForm {
     private String descricaoQuitacao;
 
     @NotNull
-    private Cliente cliente;
+    private Long idCliente;
 
-    @NotNull
-    private final List<Cobranca> cobrancas = new ArrayList<>();
+    public DividaForm() {
+    }
+
+//    public DividaForm(Divida divida){
+//        this.valor = divida.getValor();
+//        this.dataAbertura = divida.getDataAbertura();
+//        this.dataQuitacao = divida.getDataQuitacao();
+//        this.statusDivida = divida.getStatusDivida();
+//        this.descricaoQuitacao = divida.getDescricaoQuitacao();
+//        this.idCliente = divida.getCliente().getId();
+//    }
 
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public LocalDate getDataAbertura() {
         return dataAbertura;
     }
 
+    public void setDataAbertura(LocalDate dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
+
     public LocalDate getDataQuitacao() {
         return dataQuitacao;
+    }
+
+    public void setDataQuitacao(LocalDate dataQuitacao) {
+        this.dataQuitacao = dataQuitacao;
     }
 
     public StatusDivida getStatusDivida() {
         return statusDivida;
     }
 
+    public void setStatusDivida(StatusDivida statusDivida) {
+        this.statusDivida = statusDivida;
+    }
+
     public String getDescricaoQuitacao() {
         return descricaoQuitacao;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public void setDescricaoQuitacao(String descricaoQuitacao) {
+        this.descricaoQuitacao = descricaoQuitacao;
     }
 
-    public List<Cobranca> getCobrancas() {
-        return cobrancas;
+    public Long idCliente() {
+        return idCliente;
     }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+
+//    public static List<DividaForm> converter(List<Divida> dividas){
+//        return dividas.stream().map(DividaForm::new).collect(Collectors.toList());
+//    }
 }

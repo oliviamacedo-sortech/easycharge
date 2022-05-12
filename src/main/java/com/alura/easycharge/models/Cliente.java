@@ -36,6 +36,10 @@ public class Cliente  {
     public Cliente() {
     }
 
+    public Cliente(Long id){
+        this.id = id;
+    }
+
     public Cliente(String nome, String cpf, String email, String telefone, Endereco endereco, String profissao, BigDecimal renda, StatusCliente status) {
         this.nome = nome;
         this.cpf = cpf;
