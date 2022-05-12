@@ -14,7 +14,7 @@ public class ClienteDTO {
 
     private Long id;
 
-    @NotBlank(message = "Nome do cliente é obrigatório")
+    @NotBlank
     private String nomeCliente;
 
     @NotBlank
@@ -53,21 +53,24 @@ public class ClienteDTO {
     @NotNull
     private StatusCliente statusCliente;
 
-    public ClienteDTO(Long id, String nomeCliente, String cpfCliente, String telefoneCliente, String emailCliente, String ruaEnderecoCliente, String numeroEnderecoCliente, String complementoEnderecoCliente, String bairroEnderecoCliente, String cidadeEnderecoCliente, String estadoEnderecoCliente, String profissaoCliente, BigDecimal rendaCliente, StatusCliente statusCliente) {
-        this.id = id;
-        this.nomeCliente = nomeCliente;
-        this.cpfCliente = cpfCliente;
-        this.telefoneCliente = telefoneCliente;
-        this.emailCliente = emailCliente;
-        this.ruaEnderecoCliente = ruaEnderecoCliente;
-        this.numeroEnderecoCliente = numeroEnderecoCliente;
-        this.complementoEnderecoCliente = complementoEnderecoCliente;
-        this.bairroEnderecoCliente = bairroEnderecoCliente;
-        this.cidadeEnderecoCliente = cidadeEnderecoCliente;
-        this.estadoEnderecoCliente = estadoEnderecoCliente;
-        this.profissaoCliente = profissaoCliente;
-        this.rendaCliente = rendaCliente;
-        this.statusCliente = statusCliente;
+    public ClienteDTO() {
+    }
+
+    public ClienteDTO(Cliente cliente) {
+        this.id = cliente.getId();
+        this.nomeCliente = cliente.getNome();
+        this.cpfCliente = cliente.getCpf();
+        this.telefoneCliente = cliente.getTelefone();
+        this.emailCliente = cliente.getEmail();
+        this.ruaEnderecoCliente = cliente.getEndereco().getRua();
+        this.numeroEnderecoCliente = cliente.getEndereco().getNumero();
+        this.complementoEnderecoCliente = cliente.getEndereco().getComplemento();
+        this.bairroEnderecoCliente = cliente.getEndereco().getBairro();
+        this.cidadeEnderecoCliente = cliente.getEndereco().getCidade();
+        this.estadoEnderecoCliente = cliente.getEndereco().getEstado();
+        this.profissaoCliente = cliente.getProfissao();
+        this.rendaCliente = cliente.getRenda();
+        this.statusCliente = cliente.getStatus();
     }
 
 

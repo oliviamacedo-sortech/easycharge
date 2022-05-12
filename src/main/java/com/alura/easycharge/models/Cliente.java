@@ -37,6 +37,15 @@ public class Cliente  {
     public Cliente() {
     }
 
+    public Cliente(StatusCliente status, Endereco endereco, String nome, String cpf, String telefone, BigDecimal renda) {
+        this.status = status;
+        this.endereco = endereco;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.renda = renda;
+    }
+
     public Cliente(StatusCliente status, Endereco endereco, String nome, String cpf, String telefone, String email, String profissao, BigDecimal renda) {
         this.status = status;
         this.endereco = endereco;

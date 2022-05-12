@@ -2,6 +2,7 @@ package com.alura.easycharge.mapper;
 
 
 import com.alura.easycharge.dto.ClienteDTO;
+import com.alura.easycharge.dto.ClienteForm;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.Endereco;
 
@@ -37,5 +38,12 @@ public class ClienteMapper {
         cliente.setStatus(dto.getStatusCliente());
         cliente.setEndereco(new Endereco(dto.getRuaEnderecoCliente(), dto.getNumeroEnderecoCliente(), dto.getComplementoEnderecoCliente(), dto.getBairroEnderecoCliente(), dto.getCidadeEnderecoCliente(), dto.getEstadoEnderecoCliente()));
         return cliente;
+    }
+
+    public Cliente cadastrar(ClienteForm form){
+        Endereco endereco;
+        endereco = new Endereco(form.getRua(), form.getNumero(), form.getComplemento(), form.getBairro(), form.getCidade(), form.getEstado());
+
+        return new Cliente( form.getStatus(), endereco, form.getCpf(), form.getNome(), form.getTelefone(),form.getRenda());
     }
 }

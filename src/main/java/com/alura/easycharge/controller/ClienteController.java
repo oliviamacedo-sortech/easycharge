@@ -1,7 +1,6 @@
 package com.alura.easycharge.controller;
 
 import com.alura.easycharge.dto.ClienteDTO;
-import com.alura.easycharge.dto.NovoClienteDTO;
 import com.alura.easycharge.mapper.ClienteMapper;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.repository.ClienteRepository;
@@ -17,18 +16,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/api")
 public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
-
-    @GetMapping("/api/clientes")
-    @ResponseBody
-    public List<NovoClienteDTO> lista(){
-        List<Cliente> clientes = clienteRepository.findAll(Sort.by(Sort.Direction.ASC, "nome").and(Sort.by(Sort.Direction.ASC,"status")));
-        return NovoClienteDTO.converter(clientes);
-    }
 
     @GetMapping("/listaCliente")
     public String lista(Model model){
