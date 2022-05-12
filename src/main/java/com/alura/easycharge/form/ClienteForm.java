@@ -1,11 +1,8 @@
-package com.alura.easycharge.dto;
+package com.alura.easycharge.form;
 
 import com.alura.easycharge.models.Cliente;
-import com.alura.easycharge.models.Endereco;
 import com.alura.easycharge.models.StatusCliente;
-import com.alura.easycharge.repository.ClienteRepository;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -22,6 +19,9 @@ public class ClienteForm {
     private String cpf;
 
     @NotBlank
+    private String email;
+
+    @NotBlank
     private String telefone;
 
     @NotBlank
@@ -30,7 +30,6 @@ public class ClienteForm {
     @NotBlank
     private String numero;
 
-    @NotBlank
     private String complemento;
 
     @NotBlank
@@ -42,10 +41,14 @@ public class ClienteForm {
     @NotBlank
     private String estado;
 
+    @NotBlank
+    private String profissao;
+
     @NotNull
     @Positive
     private BigDecimal renda;
 
+    @NotNull
     private StatusCliente status;
 
     public ClienteForm() {
@@ -54,6 +57,7 @@ public class ClienteForm {
     public ClienteForm(Cliente cliente) {
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
+        this.email = cliente.getEmail();
         this.telefone = cliente.getTelefone();
         this.rua = cliente.getEndereco().getRua();
         this.numero = cliente.getEndereco().getNumero();
@@ -61,6 +65,7 @@ public class ClienteForm {
         this.bairro = cliente.getEndereco().getBairro();
         this.cidade = cliente.getEndereco().getCidade();
         this.estado = cliente.getEndereco().getEstado();
+        this.profissao = cliente.getProfissao();
         this.renda = cliente.getRenda();
         this.status = cliente.getStatus();
     }
@@ -72,6 +77,10 @@ public class ClienteForm {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getTelefone() {
@@ -100,6 +109,10 @@ public class ClienteForm {
 
     public String getEstado() {
         return estado;
+    }
+
+    public String getProfissao() {
+        return profissao;
     }
 
     public BigDecimal getRenda() {

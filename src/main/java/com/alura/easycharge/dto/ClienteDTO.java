@@ -3,74 +3,72 @@ package com.alura.easycharge.dto;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.Endereco;
 import com.alura.easycharge.models.StatusCliente;
-import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ClienteDTO {
 
     private Long id;
 
     @NotBlank
-    private String nomeCliente;
+    private String nome;
 
     @NotBlank
-    private String cpfCliente;
+    private String cpf;
 
     @NotBlank
-    private String telefoneCliente;
+    private String email;
 
     @NotBlank
-    private String emailCliente;
+    private String telefone;
 
     @NotBlank
-    private String ruaEnderecoCliente;
+    private String rua;
 
     @NotBlank
-    private String numeroEnderecoCliente;
+    private String numero;
 
 
-    private String complementoEnderecoCliente;
-
-    @NotBlank
-    private String bairroEnderecoCliente;
+    private String complemento;
 
     @NotBlank
-    private String cidadeEnderecoCliente;
+    private String bairro;
 
     @NotBlank
-    private String estadoEnderecoCliente;
+    private String cidade;
 
     @NotBlank
-    private String profissaoCliente;
+    private String estado;
+
+    @NotBlank
+    private String profissao;
 
     @NotNull
-    private BigDecimal rendaCliente;
+    private BigDecimal renda;
 
     @NotNull
-    private StatusCliente statusCliente;
+    private StatusCliente status;
 
     public ClienteDTO() {
     }
 
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
-        this.nomeCliente = cliente.getNome();
-        this.cpfCliente = cliente.getCpf();
-        this.telefoneCliente = cliente.getTelefone();
-        this.emailCliente = cliente.getEmail();
-        this.ruaEnderecoCliente = cliente.getEndereco().getRua();
-        this.numeroEnderecoCliente = cliente.getEndereco().getNumero();
-        this.complementoEnderecoCliente = cliente.getEndereco().getComplemento();
-        this.bairroEnderecoCliente = cliente.getEndereco().getBairro();
-        this.cidadeEnderecoCliente = cliente.getEndereco().getCidade();
-        this.estadoEnderecoCliente = cliente.getEndereco().getEstado();
-        this.profissaoCliente = cliente.getProfissao();
-        this.rendaCliente = cliente.getRenda();
-        this.statusCliente = cliente.getStatus();
+        this.nome = cliente.getNome();
+        this.cpf = cliente.getCpf();
+        this.email = cliente.getEmail();
+        this.telefone = cliente.getTelefone();
+        this.rua = cliente.getEndereco().getRua();
+        this.numero = cliente.getEndereco().getNumero();
+        this.complemento = cliente.getEndereco().getComplemento();
+        this.bairro = cliente.getEndereco().getBairro();
+        this.cidade = cliente.getEndereco().getCidade();
+        this.estado = cliente.getEndereco().getEstado();
+        this.profissao = cliente.getProfissao();
+        this.renda = cliente.getRenda();
+        this.status = cliente.getStatus();
     }
 
 
@@ -78,120 +76,120 @@ public class ClienteDTO {
         return id;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCpfCliente() {
-        return cpfCliente;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfCliente(String cpfCliente) {
-        this.cpfCliente = cpfCliente;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getTelefoneCliente() {
-        return telefoneCliente;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelefoneCliente(String telefoneCliente) {
-        this.telefoneCliente = telefoneCliente;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getEmailCliente() {
-        return emailCliente;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getRuaEnderecoCliente() {
-        return ruaEnderecoCliente;
+    public String getRua() {
+        return rua;
     }
 
-    public void setRuaEnderecoCliente(String ruaEnderecoCliente) {
-        this.ruaEnderecoCliente = ruaEnderecoCliente;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public String getNumeroEnderecoCliente() {
-        return numeroEnderecoCliente;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNumeroEnderecoCliente(String numeroEnderecoCliente) {
-        this.numeroEnderecoCliente = numeroEnderecoCliente;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getComplementoEnderecoCliente() {
-        return complementoEnderecoCliente;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setComplementoEnderecoCliente(String complementoEnderecoCliente) {
-        this.complementoEnderecoCliente = complementoEnderecoCliente;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public String getBairroEnderecoCliente() {
-        return bairroEnderecoCliente;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setBairroEnderecoCliente(String bairroEnderecoCliente) {
-        this.bairroEnderecoCliente = bairroEnderecoCliente;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    public String getCidadeEnderecoCliente() {
-        return cidadeEnderecoCliente;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setCidadeEnderecoCliente(String cidadeEnderecoCliente) {
-        this.cidadeEnderecoCliente = cidadeEnderecoCliente;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    public String getEstadoEnderecoCliente() {
-        return estadoEnderecoCliente;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setEstadoEnderecoCliente(String estadoEnderecoCliente) {
-        this.estadoEnderecoCliente = estadoEnderecoCliente;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public String getProfissaoCliente() {
-        return profissaoCliente;
+    public String getProfissao() {
+        return profissao;
     }
 
-    public void setProfissaoCliente(String profissaoCliente) {
-        this.profissaoCliente = profissaoCliente;
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
-    public BigDecimal getRendaCliente() {
-        return rendaCliente;
+    public BigDecimal getRenda() {
+        return renda;
     }
 
-    public void setRendaCliente(BigDecimal rendaCliente) {
-        this.rendaCliente = rendaCliente;
+    public void setRenda(BigDecimal renda) {
+        this.renda = renda;
     }
 
-    public StatusCliente getStatusCliente() {
-        return statusCliente;
+    public StatusCliente getStatus() {
+        return status;
     }
 
-    public void setStatusCliente(StatusCliente statusCliente) {
-        this.statusCliente = statusCliente;
+    public void setStatus(StatusCliente status) {
+        this.status = status;
     }
 
     public Cliente toCliente() {
         Cliente cliente = new Cliente();
-        cliente.setNome(nomeCliente);
-        cliente.setCpf(cpfCliente);
-        cliente.setEmail(emailCliente);
-        cliente.setTelefone(telefoneCliente);
-        cliente.setRenda(rendaCliente);
-        cliente.setStatus(statusCliente);
-        cliente.setProfissao(profissaoCliente);
-        cliente.setEndereco(new Endereco(ruaEnderecoCliente,numeroEnderecoCliente,complementoEnderecoCliente,bairroEnderecoCliente,cidadeEnderecoCliente,estadoEnderecoCliente));
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cliente.setEmail(email);
+        cliente.setTelefone(telefone);
+        cliente.setRenda(renda);
+        cliente.setStatus(status);
+        cliente.setProfissao(profissao);
+        cliente.setEndereco(new Endereco(rua, numero, complemento, bairro, cidade, estado));
 
         return cliente;
     }

@@ -1,14 +1,13 @@
 package com.alura.easycharge.controller;
 
 import com.alura.easycharge.dto.ClienteDTO;
-import com.alura.easycharge.dto.ClienteForm;
+import com.alura.easycharge.form.ClienteForm;
 import com.alura.easycharge.mapper.ClienteMapper;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -36,5 +35,11 @@ public class ClienteControllerRest {
 
         URI uri = uriBuilder.path("/api/clientes/{id}").buildAndExpand(cliente.getId()).toUri();
         return ResponseEntity.created(uri).body(new ClienteDTO(cliente));
+    }
+
+    @GetMapping("/{id}")
+    public ClienteDTO detalhar(@PathVariable Long id){
+        Cliente cliente = clienteRepository.getOne(id);
+        return new ClienteDTO(cliente);
     }
 }
