@@ -3,6 +3,7 @@ package com.alura.easycharge.form;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.StatusCliente;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -18,7 +19,7 @@ public class ClienteForm {
     @NotBlank
     private String cpf;
 
-    @NotBlank
+    @NotBlank @Email
     private String email;
 
     @NotBlank

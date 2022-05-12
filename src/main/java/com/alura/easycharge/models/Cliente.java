@@ -47,17 +47,6 @@ public class Cliente  {
         this.status = status;
     }
 
-    //    public Cliente(StatusCliente status, Endereco endereco, String nome, String cpf, String telefone, String email, String profissao, BigDecimal renda) {
-//        this.status = status;
-//        this.endereco = endereco;
-//        this.nome = nome;
-//        this.cpf = cpf;
-//        this.telefone = telefone;
-//        this.email = email;
-//        this.profissao = profissao;
-//        this.renda = renda;
-//    }
-
     public Long getId() {
         return id;
     }

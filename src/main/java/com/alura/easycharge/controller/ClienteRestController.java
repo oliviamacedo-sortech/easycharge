@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
-public class ClienteControllerRest {
+public class ClienteRestController {
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -39,7 +39,7 @@ public class ClienteControllerRest {
 
     @GetMapping("/{id}")
     public ClienteDTO detalhar(@PathVariable Long id){
-        Cliente cliente = clienteRepository.getOne(id);
+        Cliente cliente = clienteRepository.getById(id);
         return new ClienteDTO(cliente);
     }
 }
