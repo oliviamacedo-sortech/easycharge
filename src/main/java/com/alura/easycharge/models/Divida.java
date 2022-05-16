@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +15,7 @@ public class Divida {
     private Long id;
 
     @Column(nullable = false, name = "valor_divida")
-    private BigDecimal valorDivida; //todo deixar só valor
+    private BigDecimal valor;
 
     @Column(name = "data_abertura")
     private LocalDate dataAbertura = LocalDate.now();
@@ -32,7 +31,7 @@ public class Divida {
     private String descricaoQuitacao;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "divida", cascade = CascadeType.ALL)
@@ -41,23 +40,27 @@ public class Divida {
     public Divida() {
     }
 
-    public Divida(BigDecimal valorDivida, StatusDivida statusDivida, Cliente cliente) {
-        this.valorDivida = valorDivida;
+    public Divida(BigDecimal valor, LocalDate dataAbertura, LocalDate dataQuitacao, StatusDivida statusDivida, String descricaoQuitacao, Cliente cliente) {
+        this.valor = valor;
+        this.dataAbertura = dataAbertura;
+        this.dataQuitacao = dataQuitacao;
         this.statusDivida = statusDivida;
+        this.descricaoQuitacao = descricaoQuitacao;
         this.cliente = cliente;
     }
+
 
     public void adicionarCobranca(Cobranca cobranca){
         cobranca.setDivida(this);
         this.cobrancas.add(cobranca);
     }
 
-    public BigDecimal getValorDivida() {
-        return valorDivida;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setValorDivida(BigDecimal valorDivida) {
-        this.valorDivida = valorDivida;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public LocalDate getDataAbertura() {
@@ -103,7 +106,7 @@ public class Divida {
     @Override
     public String toString() {
         return "Divida{" +
-                "valorDivida=" + valorDivida +
+                "valorDivida=" + valor +
                 ", dataAbertura=" + dataAbertura +
                 ", dataQuitacao=" + dataQuitacao +
                 ", statusDivida=" + statusDivida +

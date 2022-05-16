@@ -2,6 +2,7 @@ package com.alura.easycharge.mapper;
 
 
 import com.alura.easycharge.dto.ClienteDTO;
+import com.alura.easycharge.form.ClienteForm;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.Endereco;
 
@@ -14,28 +15,35 @@ public class ClienteMapper {
         List<Cliente> clientes = new ArrayList<>();
         for (ClienteDTO dto : clienteDTO) {
             Cliente cliente = new Cliente();
-            cliente.setCpf(dto.getCpfCliente());
-            cliente.setEmail(dto.getEmailCliente());
-            cliente.setNome(dto.getNomeCliente());
-            cliente.setProfissao(dto.getProfissaoCliente());
-            cliente.setRenda(dto.getRendaCliente());
-            cliente.setTelefone(dto.getTelefoneCliente());
-            cliente.setStatus(dto.getStatusCliente());
-            cliente.setEndereco(new Endereco(dto.getRuaEnderecoCliente(), dto.getNumeroEnderecoCliente(), dto.getComplementoEnderecoCliente(), dto.getBairroEnderecoCliente(), dto.getCidadeEnderecoCliente(), dto.getEstadoEnderecoCliente()));
+            cliente.setCpf(dto.getCpf());
+            cliente.setEmail(dto.getEmail());
+            cliente.setNome(dto.getNome());
+            cliente.setProfissao(dto.getProfissao());
+            cliente.setRenda(dto.getRenda());
+            cliente.setTelefone(dto.getTelefone());
+            cliente.setStatus(dto.getStatus());
+            cliente.setEndereco(new Endereco(dto.getRua(), dto.getNumero(), dto.getComplemento(), dto.getBairro(), dto.getCidade(), dto.getEstado()));
             clientes.add(cliente);
         }
         return clientes;
     }
 
     public Cliente alterar(Cliente cliente, ClienteDTO dto){
-        cliente.setCpf(dto.getCpfCliente());
-        cliente.setEmail(dto.getEmailCliente());
-        cliente.setNome(dto.getNomeCliente());
-        cliente.setProfissao(dto.getProfissaoCliente());
-        cliente.setRenda(dto.getRendaCliente());
-        cliente.setTelefone(dto.getTelefoneCliente());
-        cliente.setStatus(dto.getStatusCliente());
-        cliente.setEndereco(new Endereco(dto.getRuaEnderecoCliente(), dto.getNumeroEnderecoCliente(), dto.getComplementoEnderecoCliente(), dto.getBairroEnderecoCliente(), dto.getCidadeEnderecoCliente(), dto.getEstadoEnderecoCliente()));
+        cliente.setCpf(dto.getCpf());
+        cliente.setEmail(dto.getEmail());
+        cliente.setNome(dto.getNome());
+        cliente.setProfissao(dto.getProfissao());
+        cliente.setRenda(dto.getRenda());
+        cliente.setTelefone(dto.getTelefone());
+        cliente.setStatus(dto.getStatus());
+        cliente.setEndereco(new Endereco(dto.getRua(), dto.getNumero(), dto.getComplemento(), dto.getBairro(), dto.getCidade(), dto.getEstado()));
         return cliente;
+    }
+
+    public Cliente cadastrar(ClienteForm form){
+        Endereco endereco;
+        endereco = new Endereco(form.getRua(), form.getNumero(), form.getComplemento(), form.getBairro(), form.getCidade(), form.getEstado());
+
+        return new Cliente(form.getNome(), form.getCpf(), form.getEmail(), form.getTelefone(), endereco, form.getProfissao(), form.getRenda(),form.getStatus());
     }
 }

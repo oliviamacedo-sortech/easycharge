@@ -22,37 +22,26 @@
                 <div class="form-group">
                     <label for="nomeCliente">Cliente</label>
                     <input th:field="*{nomeCliente}" class="form-control" placeholder="nome do cliente" required>
-                    
                 </div>
                 <div class="form-group">
                     <label for="cpfCliente">CPF</label>
                     <input th:field="*{cpfCliente}" class="form-control" placeholder="___.___.___-__" required>
-                    <div th:errors="*{cpfCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="telefoneCliente">Telefone</label>
                     <input type="tel" th:field="*{telefoneCliente}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
-                    <div th:errors="*{telefoneCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="emailCliente">Email</label>
                     <input type="email" th:field="*{emailCliente}" class="form-control" placeholder="fulano@gmail.com" required>
-                    <div th:errors="*{emailCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="profissaoCliente">Profissão</label>
                     <input th:field="*{profissaoCliente}" class="form-control" placeholder="profissão do cliente" required>
-                    <div th:errors="*{profissaoCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="rendaCliente">Renda</label>
                     <input th:field="*{rendaCliente}" class="form-control" placeholder="000.00" required>
-                    <div th:errors="*{rendaCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="statusCliente">Status do Cliente</label>
@@ -61,20 +50,14 @@
                         <option value="SUSPENSO">SUSPENSO</option>
                         <option value="ATIVO">ATIVO</option>
                     </select>
-                    <div th:errors="*{statusCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="ruaEnderecoCliente">Rua</label>
                     <input th:field="*{ruaEnderecoCliente}" class="form-control" placeholder="Av.Fulano de tal" required>
-                    <div th:errors="*{ruaEnderecoCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="numeroEnderecoCliente">Número</label>
                     <input th:field="*{numeroEnderecoCliente}" class="form-control" placeholder="1003" required>
-                    <div th:errors="*{numeroEnderecoCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="complementoEnderecoCliente">Complemento</label>
@@ -83,20 +66,14 @@
                 <div class="form-group">
                     <label for="bairroEnderecoCliente">Bairro</label>
                     <input th:field="*{bairroEnderecoCliente}" class="form-control" placeholder="" required>
-                    <div th:errors="*{bairroEnderecoCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="cidadeEnderecoCliente">Cidade</label>
                     <input th:field="*{cidadeEnderecoCliente}" class="form-control" placeholder="Brasília" required>
-                    <div th:errors="*{cidadeEnderecoCliente}">
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="estadoEnderecoCliente">Estado</label>
                     <input th:field="*{estadoEnderecoCliente}" class="form-control" placeholder="DF" required>
-                    <div th:errors="*{estadoEnderecoCliente}">
-                    </div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
             </form>

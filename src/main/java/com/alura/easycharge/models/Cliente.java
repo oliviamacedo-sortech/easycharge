@@ -15,37 +15,40 @@ public class Cliente  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private StatusCliente status;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Endereco endereco;
-
     private String nome;
 
     private String cpf;
 
+    private String email;
+
     private String telefone;
 
-    private String email;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco endereco;
 
     private String profissao;
 
     private BigDecimal renda;
 
+    @Enumerated(EnumType.STRING)
+    private StatusCliente status;
 
     public Cliente() {
     }
 
-    public Cliente(StatusCliente status, Endereco endereco, String nome, String cpf, String telefone, String email, String profissao, BigDecimal renda) {
-        this.status = status;
-        this.endereco = endereco;
+    public Cliente(Long id){
+        this.id = id;
+    }
+
+    public Cliente(String nome, String cpf, String email, String telefone, Endereco endereco, String profissao, BigDecimal renda, StatusCliente status) {
         this.nome = nome;
         this.cpf = cpf;
-        this.telefone = telefone;
         this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
         this.profissao = profissao;
         this.renda = renda;
+        this.status = status;
     }
 
     public Long getId() {
