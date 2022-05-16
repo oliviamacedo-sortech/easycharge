@@ -33,7 +33,7 @@ public class DividaRestController {
 
     @PostMapping
     public ResponseEntity<DividaDTO> cadastrar(@RequestBody @Valid DividaForm dividaForm, UriComponentsBuilder uriBuilder){
-        Divida divida = new DividaMapper().cadastrar(dividaForm);
+        Divida divida = new DividaMapper().cadastrar(dividaForm,clienteRepository);
         dividaRepository.save(divida);
 
         URI uri = uriBuilder.path("/api/dividas/{id}").buildAndExpand(divida.getCliente().getId()).toUri();

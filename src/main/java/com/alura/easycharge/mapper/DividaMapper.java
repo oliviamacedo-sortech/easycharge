@@ -6,15 +6,9 @@ import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.repository.ClienteRepository;
 
 public class DividaMapper {
-    public Divida cadastrar(DividaForm form){
-        Cliente cliente = new Cliente(form.idCliente());
-        Divida divida = new Divida();
-        divida.setValor(form.getValor());
-        divida.setDataAbertura(form.getDataAbertura());
-        divida.setDataQuitacao(form.getDataQuitacao());
-        divida.setStatusDivida(form.getStatusDivida());
-        divida.setDescricaoQuitacao(form.getDescricaoQuitacao());
-        divida.setCliente(cliente);
-        return divida;
+    public Divida cadastrar(DividaForm dividaForm, ClienteRepository clienteRepository){
+        Cliente cliente = clienteRepository.getById(dividaForm.getIdCliente());
+
+        return new Divida(dividaForm.getValor(),dividaForm.getDataAbertura(),dividaForm.getDataQuitacao(),dividaForm.getStatusDivida(), dividaForm.getDescricaoQuitacao(), cliente);
     }
 }

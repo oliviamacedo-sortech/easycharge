@@ -16,7 +16,7 @@ public class DividaForm {
     private BigDecimal valor;
 
     @NotNull
-    private LocalDate dataAbertura = LocalDate.now();
+    private LocalDate dataAbertura;
 
     @PastOrPresent
     private LocalDate dataQuitacao;
@@ -81,7 +81,7 @@ public class DividaForm {
         this.descricaoQuitacao = descricaoQuitacao;
     }
 
-    public Long idCliente() {
+    public Long getIdCliente() {
         return idCliente;
     }
 

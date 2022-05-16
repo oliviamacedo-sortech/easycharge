@@ -31,7 +31,7 @@ public class Divida {
     private String descricaoQuitacao;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "divida", cascade = CascadeType.ALL)
@@ -41,19 +41,14 @@ public class Divida {
     }
 
     public Divida(BigDecimal valor, LocalDate dataAbertura, LocalDate dataQuitacao, StatusDivida statusDivida, String descricaoQuitacao, Cliente cliente) {
-    }
-
-    public Divida(BigDecimal valor, LocalDate dataAbertura, LocalDate dataQuitacao, StatusDivida statusDivida, String descricaoQuitacao, Long id) {
         this.valor = valor;
         this.dataAbertura = dataAbertura;
         this.dataQuitacao = dataQuitacao;
         this.statusDivida = statusDivida;
         this.descricaoQuitacao = descricaoQuitacao;
-        this.id = id;
+        this.cliente = cliente;
     }
 
-    public Divida(BigDecimal valor,LocalDate dataAbertura, StatusDivida statusDivida, Cliente cliente) {
-    }
 
     public void adicionarCobranca(Cobranca cobranca){
         cobranca.setDivida(this);

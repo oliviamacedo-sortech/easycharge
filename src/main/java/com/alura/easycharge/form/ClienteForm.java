@@ -50,7 +50,7 @@ public class ClienteForm {
     private BigDecimal renda;
 
     @NotNull
-    private StatusCliente status;
+    private StatusCliente status = StatusCliente.ATIVO;
 
     public ClienteForm() {
     }
