@@ -11,44 +11,31 @@ import java.math.BigDecimal;
 public class ClienteDTO {
 
     private Long id;
-
-    @NotBlank
+    
     private String nome;
 
-    @NotBlank
     private String cpf;
 
-    @NotBlank
     private String email;
 
-    @NotBlank
     private String telefone;
 
-    @NotBlank
     private String rua;
 
-    @NotBlank
     private String numero;
-
 
     private String complemento;
 
-    @NotBlank
     private String bairro;
 
-    @NotBlank
     private String cidade;
 
-    @NotBlank
     private String estado;
 
-    @NotBlank
     private String profissao;
 
-    @NotNull
     private BigDecimal renda;
 
-    @NotNull
     private StatusCliente status;
 
     public ClienteDTO() {

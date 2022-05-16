@@ -1,7 +1,9 @@
 package com.alura.easycharge.form;
 
+import com.alura.easycharge.dto.ClienteDTO;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.StatusCliente;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -124,8 +126,8 @@ public class ClienteForm {
         return status;
     }
 
-    public static List<ClienteForm> converter(List<Cliente> clientes){
-        return clientes.stream().map(ClienteForm::new).collect(Collectors.toList());
+    public static Page<ClienteForm> converter(Page<Cliente> clientes){
+        return clientes.map(ClienteForm::new);
     }
 
 }
