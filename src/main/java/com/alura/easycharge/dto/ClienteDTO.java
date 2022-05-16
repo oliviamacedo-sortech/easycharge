@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class ClienteDTO {
 
     private Long id;
-    
+
     private String nome;
 
     private String cpf;
