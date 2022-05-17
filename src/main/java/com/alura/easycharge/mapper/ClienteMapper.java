@@ -40,10 +40,10 @@ public class ClienteMapper {
         return cliente;
     }
 
-    public Cliente cadastrar(ClienteForm form){
-        Endereco endereco;
-        endereco = new Endereco(form.getRua(), form.getNumero(), form.getComplemento(), form.getBairro(), form.getCidade(), form.getEstado());
-
-        return new Cliente(form.getNome(), form.getCpf(), form.getEmail(), form.getTelefone(), endereco, form.getProfissao(), form.getRenda(),form.getStatus());
-    }
+//    public Cliente cadastrar(ClienteForm form){
+//        Endereco endereco;
+//        endereco = new Endereco(form.getRua(), form.getNumero(), form.getComplemento(), form.getBairro(), form.getCidade(), form.getEstado());
+//
+//        return new Cliente(form.getNome(), form.getCpf(), form.getEmail(), form.getTelefone(), endereco, form.getProfissao(), form.getRenda(),form.getStatus());
+//    }
 }

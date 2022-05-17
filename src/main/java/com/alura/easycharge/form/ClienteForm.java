@@ -1,7 +1,7 @@
 package com.alura.easycharge.form;
 
-import com.alura.easycharge.dto.ClienteDTO;
 import com.alura.easycharge.models.Cliente;
+import com.alura.easycharge.models.Endereco;
 import com.alura.easycharge.models.StatusCliente;
 import org.springframework.data.domain.Page;
 
@@ -10,8 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ClienteForm {
 
@@ -73,61 +71,118 @@ public class ClienteForm {
         this.status = cliente.getStatus();
     }
 
-
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCpf() {
         return cpf;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelefone() {
         return telefone;
     }
 
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public String getRua() {
         return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
     public String getNumero() {
         return numero;
     }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     public String getComplemento() {
         return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getBairro() {
         return bairro;
     }
 
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     public String getCidade() {
         return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getEstado() {
         return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public String getProfissao() {
         return profissao;
+    }
+
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
     public BigDecimal getRenda() {
         return renda;
     }
 
+    public void setRenda(BigDecimal renda) {
+        this.renda = renda;
+    }
+
     public StatusCliente getStatus() {
         return status;
+    }
+
+    public void setStatus(StatusCliente status) {
+        this.status = status;
     }
 
     public static Page<ClienteForm> converter(Page<Cliente> clientes){
         return clientes.map(ClienteForm::new);
     }
 
+    public Cliente cadastrar(ClienteForm form){
+        Endereco endereco;
+        endereco = new Endereco(form.getRua(), form.getNumero(), form.getComplemento(), form.getBairro(), form.getCidade(), form.getEstado());
+
+        return new Cliente(form.getNome(), form.getCpf(), form.getEmail(), form.getTelefone(), endereco, form.getProfissao(), form.getRenda(),form.getStatus());
+    }
 }
