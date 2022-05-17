@@ -1,9 +1,11 @@
 package com.alura.easycharge.controller;
 
 import com.alura.easycharge.dto.ClienteDTO;
+import com.alura.easycharge.dto.ClienteDTOJson;
 import com.alura.easycharge.form.ClienteForm;
 import com.alura.easycharge.mapper.ClienteMapper;
 import com.alura.easycharge.models.Cliente;
+import com.alura.easycharge.projection.ClienteRelatorioProjection;
 import com.alura.easycharge.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -28,28 +31,31 @@ public class ClienteRestController {
     private ClienteRepository clienteRepository;
 
     @GetMapping
-    @Cacheable(value = "listaDeClientes")
-//    public Page<ClienteForm> lista(@RequestParam int pagina,@RequestParam int qtd, @RequestParam String ordenacao){
-//        Pageable paginacao = PageRequest.of(pagina,qtd, Sort.Direction.ASC, ordenacao);
-      public  Page<ClienteDTO> lista(@PageableDefault(sort = "id", direction = Sort.Direction.DESC,page = 0, size = 10) Pageable paginacao){
+      public  Page<ClienteDTOJson> lista(@PageableDefault(sort = "id", direction = Sort.Direction.DESC,page = 0, size = 10) Pageable paginacao){
         Page<Cliente> clientes = clienteRepository.findAll(paginacao);
-        return ClienteDTO.converter(clientes);
+        return ClienteDTOJson.converter(clientes);
     }
 
     @PostMapping
     @Transactional
-    @CacheEvict(value = "listaDeClientes", allEntries = true)
-    public ResponseEntity<ClienteForm> cadastrar(@RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder){
-        Cliente cliente = new ClienteForm().cadastrar(form);
+    @CacheEvict(value = "relatorioCliente", allEntries = true)
+    public ResponseEntity<ClienteDTOJson> cadastrar(@RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder){
+        Cliente cliente = new ClienteMapper().cadastrar(form);
         clienteRepository.save(cliente);
 
         URI uri = uriBuilder.path("/api/clientes/{id}").buildAndExpand(cliente.getId()).toUri();
-        return ResponseEntity.created(uri).body(new ClienteForm(cliente));
+        return ResponseEntity.created(uri).body(new ClienteDTOJson(cliente));
     }
 
     @GetMapping("/{id}")
     public ClienteDTO detalhar(@PathVariable Long id){
         Cliente cliente = clienteRepository.getById(id);
         return new ClienteDTO(cliente);
+    }
+
+    @GetMapping("/report")
+    @Cacheable(value = "relatorioCliente")
+    public List<ClienteRelatorioProjection> relatorio(){
+        return clienteRepository.findTotalDividasCobrancasPorNome();
     }
 }

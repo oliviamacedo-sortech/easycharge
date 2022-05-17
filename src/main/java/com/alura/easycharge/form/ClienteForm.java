@@ -52,25 +52,6 @@ public class ClienteForm {
     @NotNull
     private StatusCliente status = StatusCliente.ATIVO;
 
-    public ClienteForm() {
-    }
-
-    public ClienteForm(Cliente cliente) {
-        this.nome = cliente.getNome();
-        this.cpf = cliente.getCpf();
-        this.email = cliente.getEmail();
-        this.telefone = cliente.getTelefone();
-        this.rua = cliente.getEndereco().getRua();
-        this.numero = cliente.getEndereco().getNumero();
-        this.complemento = cliente.getEndereco().getComplemento();
-        this.bairro = cliente.getEndereco().getBairro();
-        this.cidade = cliente.getEndereco().getCidade();
-        this.estado = cliente.getEndereco().getEstado();
-        this.profissao = cliente.getProfissao();
-        this.renda = cliente.getRenda();
-        this.status = cliente.getStatus();
-    }
-
     public String getNome() {
         return nome;
     }
@@ -175,14 +156,4 @@ public class ClienteForm {
         this.status = status;
     }
 
-    public static Page<ClienteForm> converter(Page<Cliente> clientes){
-        return clientes.map(ClienteForm::new);
-    }
-
-    public Cliente cadastrar(ClienteForm form){
-        Endereco endereco;
-        endereco = new Endereco(form.getRua(), form.getNumero(), form.getComplemento(), form.getBairro(), form.getCidade(), form.getEstado());
-
-        return new Cliente(form.getNome(), form.getCpf(), form.getEmail(), form.getTelefone(), endereco, form.getProfissao(), form.getRenda(),form.getStatus());
-    }
 }

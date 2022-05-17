@@ -32,14 +32,6 @@ public class DividaForm {
     public DividaForm() {
     }
 
-//    public DividaForm(Divida divida){
-//        this.valor = divida.getValor();
-//        this.dataAbertura = divida.getDataAbertura();
-//        this.dataQuitacao = divida.getDataQuitacao();
-//        this.statusDivida = divida.getStatusDivida();
-//        this.descricaoQuitacao = divida.getDescricaoQuitacao();
-//        this.idCliente = divida.getCliente().getId();
-//    }
 
     public BigDecimal getValor() {
         return valor;
@@ -89,8 +81,4 @@ public class DividaForm {
         this.idCliente = idCliente;
     }
 
-
-//    public static List<DividaForm> converter(List<Divida> dividas){
-//        return dividas.stream().map(DividaForm::new).collect(Collectors.toList());
-//    }
 }
