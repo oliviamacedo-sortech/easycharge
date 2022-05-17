@@ -55,6 +55,10 @@ public class Divida {
         this.cobrancas.add(cobranca);
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public BigDecimal getValor() {
         return valor;
     }
