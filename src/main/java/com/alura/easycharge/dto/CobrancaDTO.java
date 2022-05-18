@@ -4,6 +4,7 @@ import com.alura.easycharge.models.Cobranca;
 import com.alura.easycharge.models.MeioContato;
 import com.alura.easycharge.models.TipoAcordo;
 import com.alura.easycharge.models.TipoAgente;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -93,4 +94,7 @@ public class CobrancaDTO {
         return idDivida;
     }
 
+    public static Page<CobrancaDTO> converter(Page<Cobranca> cobrancas){
+        return cobrancas.map(CobrancaDTO::new);
+    }
 }

@@ -3,6 +3,7 @@ package com.alura.easycharge.form;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.Endereco;
 import com.alura.easycharge.models.StatusCliente;
+import com.alura.easycharge.repository.ClienteRepository;
 import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
@@ -156,4 +157,16 @@ public class ClienteForm {
         this.status = status;
     }
 
+    public Cliente atualizar(Long id, ClienteRepository clienteRepository) {
+        Cliente cliente = clienteRepository.getById(id);
+        cliente.setNome(this.nome);
+        cliente.setCpf(this.cpf);
+        cliente.setEmail(this.email);
+        cliente.setTelefone(this.telefone);
+        cliente.setRenda(this.renda);
+        cliente.setStatus(this.status);
+        cliente.setProfissao(this.profissao);
+        cliente.setEndereco(new Endereco(this.rua, this.numero, this.complemento, this.bairro, this.cidade, this.estado));
+        return cliente;
+    }
 }

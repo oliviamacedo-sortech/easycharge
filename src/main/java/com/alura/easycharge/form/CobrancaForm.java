@@ -1,8 +1,8 @@
 package com.alura.easycharge.form;
 
-import com.alura.easycharge.models.MeioContato;
-import com.alura.easycharge.models.TipoAcordo;
-import com.alura.easycharge.models.TipoAgente;
+import com.alura.easycharge.dto.ClienteDTOJson;
+import com.alura.easycharge.models.*;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
@@ -121,4 +121,5 @@ public class CobrancaForm {
     public void setIdDivida(Long idDivida) {
         this.idDivida = idDivida;
     }
+
 }

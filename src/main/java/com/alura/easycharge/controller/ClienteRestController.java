@@ -58,4 +58,18 @@ public class ClienteRestController {
     public List<ClienteRelatorioProjection> relatorio(){
         return clienteRepository.findTotalDividasCobrancasPorNome();
     }
+
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<ClienteDTOJson> atualizar(@PathVariable Long id,@RequestBody @Valid ClienteForm form){
+        Cliente cliente = form.atualizar(id, clienteRepository);
+        return ResponseEntity.ok(new ClienteDTOJson(cliente));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity remover(@PathVariable Long id){
+        clienteRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }
