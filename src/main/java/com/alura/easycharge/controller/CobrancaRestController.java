@@ -35,7 +35,7 @@ public class CobrancaRestController {
 
     @PostMapping
     public ResponseEntity<CobrancaDTO> cadastrar(@RequestBody @Valid CobrancaForm form, UriComponentsBuilder uriBuilder){
-        Cobranca cobranca = new CobrancaMapper().cadastrar(form,dividaRepository);
+        Cobranca cobranca = new CobrancaMapper().cadastrar(form,cobrancaRepository,dividaRepository);
         cobrancaRepository.save(cobranca);
 
         URI uri = uriBuilder.path("/api/clientes/{id}").buildAndExpand(cobranca.getId()).toUri();

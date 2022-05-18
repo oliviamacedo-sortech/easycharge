@@ -93,7 +93,4 @@ public class CobrancaDTO {
         return idDivida;
     }
 
-    public static List<CobrancaDTO> converter(List<Cobranca> cobrancas) {
-        return cobrancas.stream().map(CobrancaDTO::new).collect(Collectors.toList());
-    }
 }
