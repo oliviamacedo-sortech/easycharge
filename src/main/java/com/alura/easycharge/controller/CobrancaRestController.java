@@ -1,5 +1,6 @@
 package com.alura.easycharge.controller;
 
+import com.alura.easycharge.dto.ClienteDTO;
 import com.alura.easycharge.dto.ClienteDTOJson;
 import com.alura.easycharge.dto.CobrancaDTO;
 import com.alura.easycharge.form.ClienteForm;
@@ -60,5 +61,11 @@ public class CobrancaRestController {
     public ResponseEntity remover(@PathVariable Long id){
         cobrancaRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public CobrancaDTO detalhar(@PathVariable Long id){
+        Cobranca cobranca = cobrancaRepository.getById(id);
+        return new CobrancaDTO(cobranca);
     }
 }

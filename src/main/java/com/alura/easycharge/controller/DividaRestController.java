@@ -1,11 +1,13 @@
 package com.alura.easycharge.controller;
 
 import com.alura.easycharge.dto.ClienteDTOJson;
+import com.alura.easycharge.dto.CobrancaDTO;
 import com.alura.easycharge.dto.DividaDTO;
 import com.alura.easycharge.form.ClienteForm;
 import com.alura.easycharge.form.DividaForm;
 import com.alura.easycharge.mapper.DividaMapper;
 import com.alura.easycharge.models.Cliente;
+import com.alura.easycharge.models.Cobranca;
 import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.repository.ClienteRepository;
 import com.alura.easycharge.repository.DividaRepository;
@@ -55,5 +57,11 @@ public class DividaRestController {
     public ResponseEntity remover(@PathVariable Long id){
         dividaRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public DividaDTO detalhar(@PathVariable Long id){
+        Divida divida = dividaRepository.getById(id);
+        return new DividaDTO(divida);
     }
 }
