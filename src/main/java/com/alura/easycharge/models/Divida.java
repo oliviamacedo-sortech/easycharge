@@ -107,6 +107,10 @@ public class Divida {
         this.cliente = cliente;
     }
 
+    public Long getIdCliente(){
+        return this.cliente.getId();
+    }
+
     @Override
     public String toString() {
         return "Divida{" +

@@ -1,7 +1,9 @@
 package com.alura.easycharge.form;
 
 import com.alura.easycharge.models.Cliente;
+import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.models.StatusDivida;
+import com.alura.easycharge.repository.DividaRepository;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -81,4 +83,14 @@ public class DividaForm {
         this.idCliente = idCliente;
     }
 
+    public Divida atualizar(Long id, DividaRepository dividaRepository) {
+        Divida divida = dividaRepository.getById(id);
+        divida.setValor(this.valor);
+        divida.setDataAbertura(this.dataAbertura);
+        divida.setDataQuitacao(this.dataQuitacao);
+        divida.setStatusDivida(this.statusDivida);
+        divida.setDescricaoQuitacao(this.descricaoQuitacao);
+        divida.getCliente().setId(this.idCliente);
+        return divida;
+    }
 }
