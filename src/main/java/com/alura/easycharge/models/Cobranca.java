@@ -154,6 +154,11 @@ public class Cobranca {
                 ", divida=" + divida +
                 '}';
     }
+
+    public Long getIdDivida(){
+        return this.divida.getId();
+    }
+
 //    public String toString() {
 //        return "Cobranca{" +
 //                "dataRealizacao=" + dataRealizacao +

@@ -7,8 +7,6 @@ import com.alura.easycharge.models.TipoAgente;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CobrancaDTO {
     private Long id;
@@ -47,7 +45,7 @@ public class CobrancaDTO {
         this.tipoAcordo = cobranca.getTipoAcordo();
         this.dataPromessaPagamento = cobranca.getDataPromessaPagamento();
         this.numeroParcelas = cobranca.getNumeroParcelas();
-        this.idDivida = cobranca.getDivida().getId();
+        this.idDivida = cobranca.getIdDivida();
     }
 
     public Long getId() {

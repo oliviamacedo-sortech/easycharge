@@ -2,6 +2,7 @@ package com.alura.easycharge.form;
 
 import com.alura.easycharge.dto.ClienteDTOJson;
 import com.alura.easycharge.models.*;
+import com.alura.easycharge.repository.CobrancaRepository;
 import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.*;
@@ -122,4 +123,18 @@ public class CobrancaForm {
         this.idDivida = idDivida;
     }
 
+    public Cobranca atualizar(Long id, CobrancaRepository cobrancaRepository){
+        Cobranca cobranca = cobrancaRepository.getById(id);
+        cobranca.setDataRealizacao(this.dataRealizacao);
+        cobranca.setMeioContato(this.meioContato);
+        cobranca.setAgente(this.agente);
+        cobranca.setTipoAgente(this.tipoAgente);
+        cobranca.setComentarioAgente(this.comentarioAgente);
+        cobranca.setAcordo(this.acordo);
+        cobranca.setTipoAcordo(this.tipoAcordo);
+        cobranca.setDataPromessaPagamento(this.dataPromessaPagamento);
+        cobranca.setNumeroParcelas(this.numeroParcelas);
+        cobranca.getDivida().setId(this.idDivida);
+        return cobranca;
+    }
 }

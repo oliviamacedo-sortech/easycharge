@@ -48,4 +48,17 @@ public class CobrancaRestController {
         URI uri = uriBuilder.path("/api/clientes/{id}").buildAndExpand(cobranca.getId()).toUri();
         return ResponseEntity.created(uri).body(new CobrancaDTO(cobranca));
     }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<CobrancaDTO> atualizar(@PathVariable Long id,@RequestBody @Valid CobrancaForm form){
+        Cobranca cobranca = form.atualizar(id, cobrancaRepository);
+        return ResponseEntity.ok(new CobrancaDTO(cobranca));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity remover(@PathVariable Long id){
+        cobrancaRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }
