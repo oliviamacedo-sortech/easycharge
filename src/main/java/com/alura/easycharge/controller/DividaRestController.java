@@ -12,9 +12,11 @@ import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.repository.ClienteRepository;
 import com.alura.easycharge.repository.DividaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -49,7 +51,9 @@ public class DividaRestController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DividaDTO> atualizar(@PathVariable Long id, @RequestBody @Valid DividaForm form){
-        Divida divida = form.atualizar(id, dividaRepository);
+        Cliente cliente = clienteRepository.findById(form.getIdCliente())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "O cliente " + form.getIdCliente() + " não existe"));
+        Divida divida = form.atualizar(id,cliente, dividaRepository);
         return ResponseEntity.ok(new DividaDTO(divida));
     }
 

@@ -35,7 +35,7 @@ public class CobrancaForm {
 
     @Min(1)
     @Max(12)
-    private int numeroParcelas;
+    private Integer numeroParcelas;
 
     @NotNull
     private Long idDivida;
@@ -107,11 +107,11 @@ public class CobrancaForm {
         this.dataPromessaPagamento = dataPromessaPagamento;
     }
 
-    public int getNumeroParcelas() {
+    public Integer getNumeroParcelas() {
         return numeroParcelas;
     }
 
-    public void setNumeroParcelas(int numeroParcelas) {
+    public void setNumeroParcelas(Integer numeroParcelas) {
         this.numeroParcelas = numeroParcelas;
     }
 

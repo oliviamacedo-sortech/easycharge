@@ -12,9 +12,9 @@ public class CobrancaMapper {
         Divida divida = dividaRepository.getById(cobrancaForm.getIdDivida());
         Cobranca cobranca = new Cobranca(cobrancaForm.getDataRealizacao(),cobrancaForm.getMeioContato(),cobrancaForm.getAgente(),cobrancaForm.getTipoAgente(),cobrancaForm.getComentarioAgente(),cobrancaForm.getAcordo(),cobrancaForm.getTipoAcordo(),cobrancaForm.getDataPromessaPagamento(),cobrancaForm.getNumeroParcelas(),divida);
 
-        if(cobrancaRepository.somaCobrancasDivida(cobrancaForm.getIdDivida()) > 3){
-            divida.setStatusDivida(StatusDivida.RECUPERACAO_JUDICIAL);
-        }
+//        if(cobrancaRepository.somaCobrancasDivida(cobrancaForm.getIdDivida()) > 3){
+//            divida.setStatusDivida(StatusDivida.RECUPERACAO_JUDICIAL);
+//        }
 
         return cobranca;
     }

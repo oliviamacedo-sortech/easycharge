@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CobrancaRepository extends JpaRepository<Cobranca, Long> {
-
+    //todo Mudar nome
     @Query("SELECT COUNT(c) FROM Cobranca c " +
             "WHERE c.divida.id = :id ")
     int somaCobrancasDivida(@Param("id") Long idDivida);

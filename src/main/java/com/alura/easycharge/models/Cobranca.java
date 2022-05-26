@@ -39,7 +39,7 @@ public class Cobranca {
     private LocalDate dataPromessaPagamento;
 
     @Column(name = "numero_parcelas")
-    private int numeroParcelas;
+    private Integer numeroParcelas;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Divida divida;
@@ -48,7 +48,7 @@ public class Cobranca {
     }
 
 
-    public Cobranca(LocalDate dataRealizacao,MeioContato meioContato, String agente, TipoAgente tipoAgente, String comentarioAgente,String acordo, TipoAcordo tipoAcordo,LocalDate dataPromessaPagamento, int numeroParcelas, Divida divida) {
+    public Cobranca(LocalDate dataRealizacao,MeioContato meioContato, String agente, TipoAgente tipoAgente, String comentarioAgente,String acordo, TipoAcordo tipoAcordo,LocalDate dataPromessaPagamento, Integer numeroParcelas, Divida divida) {
         this.dataRealizacao = dataRealizacao;
         this.meioContato = meioContato;
         this.agente = agente;
@@ -129,11 +129,11 @@ public class Cobranca {
         this.dataPromessaPagamento = dataPromessaPagamento;
     }
 
-    public int getNumeroParcelas() {
+    public Integer getNumeroParcelas() {
         return numeroParcelas;
     }
 
-    public void setNumeroParcelas(int numeroParcelas) {
+    public void setNumeroParcelas(Integer numeroParcelas) {
         this.numeroParcelas = numeroParcelas;
     }
 

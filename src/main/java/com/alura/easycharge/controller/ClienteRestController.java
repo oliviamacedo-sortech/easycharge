@@ -59,7 +59,6 @@ public class ClienteRestController {
         return clienteRepository.findTotalDividasCobrancasPorNome();
     }
 
-
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<ClienteDTOJson> atualizar(@PathVariable Long id,@RequestBody @Valid ClienteForm form){

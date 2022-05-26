@@ -9,6 +9,7 @@ import com.alura.easycharge.mapper.ClienteMapper;
 import com.alura.easycharge.mapper.CobrancaMapper;
 import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.Cobranca;
+import com.alura.easycharge.models.StatusDivida;
 import com.alura.easycharge.repository.CobrancaRepository;
 import com.alura.easycharge.repository.DividaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

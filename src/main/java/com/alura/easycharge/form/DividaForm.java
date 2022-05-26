@@ -83,14 +83,14 @@ public class DividaForm {
         this.idCliente = idCliente;
     }
 
-    public Divida atualizar(Long id, DividaRepository dividaRepository) {
+    public Divida atualizar(Long id, Cliente cliente, DividaRepository dividaRepository) {
         Divida divida = dividaRepository.getById(id);
         divida.setValor(this.valor);
         divida.setDataAbertura(this.dataAbertura);
         divida.setDataQuitacao(this.dataQuitacao);
         divida.setStatusDivida(this.statusDivida);
         divida.setDescricaoQuitacao(this.descricaoQuitacao);
-        divida.getCliente().setId(this.idCliente);
+        divida.setCliente(cliente);
         return divida;
     }
 }
