@@ -1,7 +1,9 @@
 package com.alura.easycharge.form;
 
 import com.alura.easycharge.models.Cliente;
+import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.models.StatusDivida;
+import com.alura.easycharge.repository.DividaRepository;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -32,14 +34,6 @@ public class DividaForm {
     public DividaForm() {
     }
 
-//    public DividaForm(Divida divida){
-//        this.valor = divida.getValor();
-//        this.dataAbertura = divida.getDataAbertura();
-//        this.dataQuitacao = divida.getDataQuitacao();
-//        this.statusDivida = divida.getStatusDivida();
-//        this.descricaoQuitacao = divida.getDescricaoQuitacao();
-//        this.idCliente = divida.getCliente().getId();
-//    }
 
     public BigDecimal getValor() {
         return valor;
@@ -89,8 +83,14 @@ public class DividaForm {
         this.idCliente = idCliente;
     }
 
-
-//    public static List<DividaForm> converter(List<Divida> dividas){
-//        return dividas.stream().map(DividaForm::new).collect(Collectors.toList());
-//    }
+    public Divida atualizar(Long id, Cliente cliente, DividaRepository dividaRepository) {
+        Divida divida = dividaRepository.getById(id);
+        divida.setValor(this.valor);
+        divida.setDataAbertura(this.dataAbertura);
+        divida.setDataQuitacao(this.dataQuitacao);
+        divida.setStatusDivida(this.statusDivida);
+        divida.setDescricaoQuitacao(this.descricaoQuitacao);
+        divida.setCliente(cliente);
+        return divida;
+    }
 }

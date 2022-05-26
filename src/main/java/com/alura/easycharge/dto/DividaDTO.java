@@ -40,7 +40,7 @@ public class DividaDTO {
         this.dataQuitacao = divida.getDataQuitacao();
         this.statusDivida = divida.getStatusDivida();
         this.descricaoQuitacao = divida.getDescricaoQuitacao();
-        this.idCliente = divida.getCliente().getId();
+        this.idCliente = divida.getIdCliente();
     }
 
 

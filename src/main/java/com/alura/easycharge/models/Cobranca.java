@@ -12,7 +12,7 @@ public class Cobranca {
     private Long id;
 
     @Column(nullable = false, name = "data_realizacao")
-    private LocalDate dataRealizacao = LocalDate.now();
+    private LocalDate dataRealizacao;
 
     @Column(nullable = false, name = "meio_de_contato")
     @Enumerated(EnumType.STRING)
@@ -36,10 +36,10 @@ public class Cobranca {
     private TipoAcordo tipoAcordo;
 
     @Column(name = "data_promessa_pagamento")
-    private Date dataPromessaPagamento;
+    private LocalDate dataPromessaPagamento;
 
     @Column(name = "numero_parcelas")
-    private int numeroParcelas;
+    private Integer numeroParcelas;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Divida divida;
@@ -48,13 +48,21 @@ public class Cobranca {
     }
 
 
-    public Cobranca(MeioContato meioContato, String agente, TipoAgente tipoAgente, String comentarioAgente, TipoAcordo tipoAcordo, Divida divida) {
+    public Cobranca(LocalDate dataRealizacao,MeioContato meioContato, String agente, TipoAgente tipoAgente, String comentarioAgente,String acordo, TipoAcordo tipoAcordo,LocalDate dataPromessaPagamento, Integer numeroParcelas, Divida divida) {
+        this.dataRealizacao = dataRealizacao;
         this.meioContato = meioContato;
         this.agente = agente;
         this.tipoAgente = tipoAgente;
         this.comentarioAgente = comentarioAgente;
+        this.acordo = acordo;
         this.tipoAcordo = tipoAcordo;
+        this.dataPromessaPagamento = dataPromessaPagamento;
+        this.numeroParcelas = numeroParcelas;
         this.divida = divida;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public LocalDate getDataRealizacao() {
@@ -113,19 +121,19 @@ public class Cobranca {
         this.tipoAcordo = tipoAcordo;
     }
 
-    public Date getDataPromessaPagamento() {
+    public LocalDate getDataPromessaPagamento() {
         return dataPromessaPagamento;
     }
 
-    public void setDataPromessaPagamento(Date dataPromessaPagamento) {
+    public void setDataPromessaPagamento(LocalDate dataPromessaPagamento) {
         this.dataPromessaPagamento = dataPromessaPagamento;
     }
 
-    public int getNumeroParcelas() {
+    public Integer getNumeroParcelas() {
         return numeroParcelas;
     }
 
-    public void setNumeroParcelas(int numeroParcelas) {
+    public void setNumeroParcelas(Integer numeroParcelas) {
         this.numeroParcelas = numeroParcelas;
     }
 
@@ -146,6 +154,12 @@ public class Cobranca {
                 ", divida=" + divida +
                 '}';
     }
+
+    public Long getIdDivida(){
+        return this.divida.getId();
+    }
+
+
 //    public String toString() {
 //        return "Cobranca{" +
 //                "dataRealizacao=" + dataRealizacao +

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 
-public class ClienteDTO {
+public class ClienteDTOJson {
 
     private Long id;
 
@@ -19,40 +19,22 @@ public class ClienteDTO {
 
     private String telefone;
 
-    private String rua;
-
-    private String numero;
-
-    private String complemento;
-
-    private String bairro;
-
-    private String cidade;
-
-    private String estado;
-
-    private String profissao;
+    private String local;
 
     private BigDecimal renda;
 
     private StatusCliente status;
 
-    public ClienteDTO() {
+    public ClienteDTOJson() {
     }
 
-    public ClienteDTO(Cliente cliente) {
+    public ClienteDTOJson(Cliente cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
         this.email = cliente.getEmail();
         this.telefone = cliente.getTelefone();
-        this.rua = cliente.getEndereco().getRua();
-        this.numero = cliente.getEndereco().getNumero();
-        this.complemento = cliente.getEndereco().getComplemento();
-        this.bairro = cliente.getEndereco().getBairro();
-        this.cidade = cliente.getEndereco().getCidade();
-        this.estado = cliente.getEndereco().getEstado();
-        this.profissao = cliente.getProfissao();
+        this.local = cliente.getEndereco().getCidade() + "/" + cliente.getEndereco().getEstado();
         this.renda = cliente.getRenda();
         this.status = cliente.getStatus();
     }
@@ -77,32 +59,8 @@ public class ClienteDTO {
         return telefone;
     }
 
-    public String getRua() {
-        return rua;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getProfissao() {
-        return profissao;
+    public String getLocal() {
+        return local;
     }
 
     public BigDecimal getRenda() {
@@ -121,13 +79,11 @@ public class ClienteDTO {
         cliente.setTelefone(telefone);
         cliente.setRenda(renda);
         cliente.setStatus(status);
-        cliente.setProfissao(profissao);
-        cliente.setEndereco(new Endereco(rua, numero, complemento, bairro, cidade, estado));
 
         return cliente;
     }
 
-    public static Page<ClienteDTO> converter(Page<Cliente> clientes){
-        return clientes.map(ClienteDTO::new);
+    public static Page<ClienteDTOJson> converter(Page<Cliente> clientes){
+        return clientes.map(ClienteDTOJson::new);
     }
 }
