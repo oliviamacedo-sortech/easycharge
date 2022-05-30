@@ -115,14 +115,14 @@ public class ClienteDTO {
 
     public Cliente toCliente() {
         Cliente cliente = new Cliente();
-        cliente.setNome(nome);
-        cliente.setCpf(cpf);
-        cliente.setEmail(email);
-        cliente.setTelefone(telefone);
-        cliente.setRenda(renda);
-        cliente.setStatus(status);
-        cliente.setProfissao(profissao);
-        cliente.setEndereco(new Endereco(rua, numero, complemento, bairro, cidade, estado));
+        cliente.setNome(this.nome);
+        cliente.setCpf(this.cpf);
+        cliente.setEmail(this.email);
+        cliente.setTelefone(this.telefone);
+        cliente.setRenda(this.renda);
+        cliente.setStatus(this.status);
+        cliente.setProfissao(this.profissao);
+        cliente.setEndereco(new Endereco(this.rua, this.numero, this.complemento, this.bairro, this.cidade, this.estado));
 
         return cliente;
     }

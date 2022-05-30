@@ -4,7 +4,6 @@ import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.models.Endereco;
 import com.alura.easycharge.models.StatusCliente;
 import com.alura.easycharge.repository.ClienteRepository;
-import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
