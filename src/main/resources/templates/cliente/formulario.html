@@ -22,7 +22,8 @@
                 <input hidden th:field="*{id}" class="form-control">
                 <div class="form-group">
                     <label for="nome">Cliente</label>
-                    <input th:field="*{nome}" class="form-control" placeholder="nome do cliente" required>
+                    <input th:field="*{nome}" th:errorsclass="is-invalid" class="form-control" placeholder="nome do cliente" required>
+                    <div class="invalid-feedback" th:errors = "*{nome}">Erro</div>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
