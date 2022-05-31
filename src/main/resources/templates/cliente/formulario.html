@@ -17,69 +17,89 @@
         <div class="jumbotron mb-0">
             <h1 class="display-4">Novo Cliente</h1>
         </div>
-        <div class="card mt-3 mb-2">
-            <form th:object="${clienteDTO}" class="card-body" action="/cliente/novo" method="post">
+        <div class="card mt-3 mb-4">
+            <form th:object="${clienteDTO}" class="formulario-cliente card-body bg-light" action="/cliente/novo" method="post">
                 <input hidden th:field="*{id}" class="form-control">
-                <div class="form-group">
-                    <label for="nome">Cliente</label>
-                    <input th:field="*{nome}" th:errorsclass="is-invalid" class="form-control" placeholder="nome do cliente" required>
-                    <div class="invalid-feedback" th:errors = "*{nome}">Erro</div>
+                <h4>Dados Pessoais</h4>
+                <div class="row g-3">
+                    <div class="form-group col-8">
+                        <label for="nome">Nome Cliente</label>
+                        <input th:field="*{nome}" th:errorsclass="is-invalid" class="form-control" placeholder="nome do cliente" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{nome}">Erros do nome do cliente</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cpf">CPF</label>
+                        <input th:field="*{cpf}" class="form-control" placeholder="___.___.___-__" required>
+                        <div class="invalid-feedback">O cpf é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" th:field="*{telefone}" class="form-control" placeholder="( ) 9____-____" required>
+                        <div class="invalid-feedback">O telefone é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="email">Email</label>
+                        <input type="email" th:field="*{email}" class="form-control" placeholder="fulano@gmail.com" required>
+                        <div class="invalid-feedback">O email é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="profissao">Profissão</label>
+                        <input th:field="*{profissao}" class="form-control" placeholder="profissão do cliente" required>
+                        <div class="invalid-feedback">A profissão é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="renda">Renda</label>
+                        <input th:field="*{renda}" class="form-control" placeholder="000.00" required>
+                        <div class="invalid-feedback">A renda é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="status">Status do cliente</label>
+                        <!--<input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO" required>-->
+                        <select th:field="*{status}" class="form-control" required>
+                            <option value="SUSPENSO">SUSPENSO</option>
+                            <option value="ATIVO">ATIVO</option>
+                        </select>
+                        <div class="invalid-feedback">O status é um campo obrigatório</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="cpf">CPF</label>
-                    <input th:field="*{cpf}" class="form-control" placeholder="___.___.___-__" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" th:field="*{telefone}" class="form-control" placeholder="( ) 9____-____" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" th:field="*{email}" class="form-control" placeholder="fulano@gmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="profissao">Profissão</label>
-                    <input th:field="*{profissao}" class="form-control" placeholder="profissão do cliente" required>
-                </div>
-                <div class="form-group">
-                    <label for="renda">Renda</label>
-                    <input th:field="*{renda}" class="form-control" placeholder="000.00" required>
-                </div>
-                <div class="form-group">
-                    <label for="status">Status do cliente</label>
-                    <!--<input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO" required>-->
-                    <select th:field="*{status}" class="form-control" required>
-                        <option value="SUSPENSO">SUSPENSO</option>
-                        <option value="ATIVO">ATIVO</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="rua">Rua</label>
-                    <input th:field="*{rua}" class="form-control" placeholder="Av.Fulano de tal" required>
-                </div>
-                <div class="form-group">
-                    <label for="numero">Número</label>
-                    <input th:field="*{numero}" class="form-control" placeholder="1003" required>
-                </div>
-                <div class="form-group">
-                    <label for="complemento">Complemento</label>
-                    <input th:field="*{complemento}" class="form-control" >
-                </div>
-                <div class="form-group">
-                    <label for="bairro">Bairro</label>
-                    <input th:field="*{bairro}" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="cidade">Cidade</label>
-                    <input th:field="*{cidade}" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="estado">Estado</label>
-                    <input th:field="*{estado}" class="form-control" required>
+                <h4 class="pt-3">Endereço</h4>
+                <div class="row g-3">
+                    <div class="form-group  col-md-4">
+                        <label for="rua">Rua</label>
+                        <input th:field="*{rua}" class="form-control" placeholder="Av.Fulano de tal" required>
+                        <div class="invalid-feedback">A rua é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="numero">Número</label>
+                        <input th:field="*{numero}" class="form-control" placeholder="25" required>
+                        <div class="invalid-feedback">O número é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="complemento">Complemento</label>
+                        <input th:field="*{complemento}" class="form-control" >
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="bairro">Bairro</label>
+                        <input th:field="*{bairro}" class="form-control" required>
+                        <div class="invalid-feedback">O bairro é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cidade">Cidade</label>
+                        <input th:field="*{cidade}" class="form-control" required>
+                        <div class="invalid-feedback">A cidade é um campo obrigatório</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="estado">Estado</label>
+                        <input th:field="*{estado}" class="form-control" required>
+                    </div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
             </form>
         </div>
     </div>
+
+    <script src="validacao.js"></script>
 </body>
 </html>

@@ -18,66 +18,69 @@
         <div class="jumbotron mb-0">
             <h1 class="display-4">Alterar Cliente</h1>
         </div>
-        <div class="card mt-3 mb-2">
-            <form class="card-body" action="/cliente/alterarCliente" method="post">
+        <div class="card mt-3 mb-4">
+            <form class="formulario-cliente card-body bg-light" action="/cliente/alterarCliente" method="post">
                 <div class="form-group">
                     <input hidden th:name="id" id="nome" th:value="${cliente.id}" class="form-control" placeholder="id do cliente">
                 </div>
-                <div class="form-group">
-                    <label for="nome">Cliente</label>
-                    <input th:name="nome" id="nome" th:value="${cliente.nome}" class="form-control" placeholder="nome do cliente" required>
-                </div>
-                <div class="form-group">
-                    <label for="cpf">CPF</label>
-                    <input th:name="cpf" id="cpf" th:value="${cliente.cpf}" class="form-control" placeholder="___.___.___-__" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" th:name="telefone" id="telefone" th:value="${cliente.telefone}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
-
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" th:name="email" id="email" th:value="${cliente.email}" class="form-control" placeholder="fulano@gmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="profissao">Profissão</label>
-                    <input th:name="profissao" id="profissao" th:value="${cliente.profissao}" class="form-control" placeholder="profissão do cliente" required>
-                </div>
-                <div class="form-group">
-                    <label for="renda">Renda</label>
-                    <input th:name="renda" id="renda" th:value="${cliente.renda}" class="form-control" placeholder="000.00" required>
-                </div>
-                <div class="form-group">
-                    <label for="status">Status do Cliente</label>
-                    <select th:name="status" id="status" th:value="${cliente.status}" class="form-control" required>
-                        <option value="SUSPENSO">SUSPENSO</option>
-                        <option value="ATIVO">ATIVO</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="cliente.endereco.rua">Rua</label>
-                    <input th:name="rua" id="rua" th:value="${cliente.endereco.rua}" class="form-control" placeholder="Av.Fulano de tal" required>
-                </div>
-                <div class="form-group">
-                    <label for="cliente.endereco.numero">Número</label>
-                    <input th:name="numero" id="numero" th:value="${cliente.endereco.numero}" class="form-control" placeholder="1003" required>
-                </div>
-                <div class="form-group">
-                    <label for="cliente.endereco.complemento">Complemento</label>
-                    <input th:name="complemento" id="complemento" th:value="${cliente.endereco.complemento}" class="form-control" >
-                </div>
-                <div class="form-group">
-                    <label for="cliente.endereco.bairro">Bairro</label>
-                    <input th:name="bairro" id="bairro" th:value="${cliente.endereco.bairro}" class="form-control" placeholder="" required>
-                </div>
-                <div class="form-group">
-                    <label for="cliente.endereco.cidade">Cidade</label>
-                    <input th:name="cidade" id="cidade" th:value="${cliente.endereco.cidade}" class="form-control" placeholder="Brasília" required>
-                </div>
-                <div class="form-group">
-                    <label for="cliente.endereco.estado">Estado</label>
-                    <input th:name="estado" id="estado" th:value="${cliente.endereco.estado}" class="form-control" placeholder="DF" required>
+                <h4>Dados Pessoais</h4>
+                <div class="row g-3">
+                    <div class="form-group col-8">
+                        <label for="nome">Nome Cliente</label>
+                        <input th:name="nome" id="nome" th:value="${cliente.nome}" class="form-control" placeholder="nome do cliente" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cpf">CPF</label>
+                        <input th:name="cpf" id="cpf" th:value="${cliente.cpf}" class="form-control" placeholder="___.___.___-__" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" th:name="telefone" id="telefone" th:value="${cliente.telefone}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="email">Email</label>
+                        <input type="email" th:name="email" id="email" th:value="${cliente.email}" class="form-control" placeholder="fulano@gmail.com" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="profissao">Profissão</label>
+                        <input th:name="profissao" id="profissao" th:value="${cliente.profissao}" class="form-control" placeholder="profissão do cliente" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="renda">Renda</label>
+                        <input th:name="renda" id="renda" th:value="${cliente.renda}" class="form-control" placeholder="000.00" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="status">Status do Cliente</label>
+                        <select th:name="status" id="status" th:value="${cliente.status}" class="form-control" required>
+                            <option value="SUSPENSO">SUSPENSO</option>
+                            <option value="ATIVO">ATIVO</option>
+                        </select>
+                    </div>
+                    <h4 class="pt-3">Endereço</h4>
+                    <div class="form-group col-md-4">
+                        <label for="cliente.endereco.rua">Rua</label>
+                        <input th:name="rua" id="rua" th:value="${cliente.endereco.rua}" class="form-control" placeholder="Av.Fulano de tal" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cliente.endereco.numero">Número</label>
+                        <input th:name="numero" id="numero" th:value="${cliente.endereco.numero}" class="form-control" placeholder="1003" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cliente.endereco.complemento">Complemento</label>
+                        <input th:name="complemento" id="complemento" th:value="${cliente.endereco.complemento}" class="form-control" >
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cliente.endereco.bairro">Bairro</label>
+                        <input th:name="bairro" id="bairro" th:value="${cliente.endereco.bairro}" class="form-control" placeholder="" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cliente.endereco.cidade">Cidade</label>
+                        <input th:name="cidade" id="cidade" th:value="${cliente.endereco.cidade}" class="form-control" placeholder="Brasília" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cliente.endereco.estado">Estado</label>
+                        <input th:name="estado" id="estado" th:value="${cliente.endereco.estado}" class="form-control" placeholder="DF" required>
+                    </div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Alterar</button>
             </form>
