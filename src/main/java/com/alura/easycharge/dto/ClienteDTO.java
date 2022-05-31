@@ -113,16 +113,72 @@ public class ClienteDTO {
         return status;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
+    }
+
+    public void setRenda(BigDecimal renda) {
+        this.renda = renda;
+    }
+
+    public void setStatus(StatusCliente status) {
+        this.status = status;
+    }
+
     public Cliente toCliente() {
         Cliente cliente = new Cliente();
-        cliente.setNome(nome);
-        cliente.setCpf(cpf);
-        cliente.setEmail(email);
-        cliente.setTelefone(telefone);
-        cliente.setRenda(renda);
-        cliente.setStatus(status);
-        cliente.setProfissao(profissao);
-        cliente.setEndereco(new Endereco(rua, numero, complemento, bairro, cidade, estado));
+        cliente.setNome(this.nome);
+        cliente.setCpf(this.cpf);
+        cliente.setEmail(this.email);
+        cliente.setTelefone(this.telefone);
+        cliente.setRenda(this.renda);
+        cliente.setStatus(this.status);
+        cliente.setProfissao(this.profissao);
+        cliente.setEndereco(new Endereco(this.rua, this.numero, this.complemento, this.bairro, this.cidade, this.estado));
 
         return cliente;
     }

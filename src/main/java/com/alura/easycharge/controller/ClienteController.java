@@ -52,7 +52,7 @@ public class ClienteController {
 
     @Transactional
     @PostMapping("/cliente/alterarCliente")
-    public String atualizar(@Valid ClienteDTO dto, BindingResult result){
+    public String atualizar(ClienteDTO dto, BindingResult result){
         if (result.hasErrors()){
             return "cliente/formulario";
        }

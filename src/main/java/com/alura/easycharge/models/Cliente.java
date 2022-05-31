@@ -1,11 +1,7 @@
 package com.alura.easycharge.models;
 
-import com.alura.easycharge.repository.ClienteRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Table(name = "clientes")

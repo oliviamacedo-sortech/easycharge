@@ -5,6 +5,7 @@ import com.alura.easycharge.models.Cliente;
 import com.alura.easycharge.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,9 @@ public class NovoClienteController {
         return "cliente/formulario";
     }
 
+    @Transactional
     @PostMapping("novo")
-    public String novo(@Valid ClienteDTO requisicao, BindingResult result){
+    public String novo(ClienteDTO requisicao, BindingResult result){
         if (result.hasErrors()){
             return "cliente/formulario";
         }
