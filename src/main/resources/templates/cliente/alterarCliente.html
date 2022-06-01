@@ -19,7 +19,7 @@
             <h1 class="display-4">Alterar Cliente</h1>
         </div>
         <div class="card mt-3 mb-4">
-            <form class="formulario-cliente card-body bg-light" action="/cliente/alterarCliente" method="post">
+            <form class="card-body bg-light" action="/cliente/alterarCliente" method="post">
                 <div class="form-group">
                     <input hidden th:name="id" id="nome" th:value="${cliente.id}" class="form-control" placeholder="id do cliente">
                 </div>
@@ -27,19 +27,19 @@
                 <div class="row g-3">
                     <div class="form-group col-8">
                         <label for="nome">Nome Cliente</label>
-                        <input th:name="nome" id="nome" th:value="${cliente.nome}" class="form-control" placeholder="nome do cliente" required>
+                        <input th:name="nome" id="nome" th:value="${cliente.nome}" class="form-control" placeholder="nome do cliente" data-tipo="nome" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cpf">CPF</label>
-                        <input th:name="cpf" id="cpf" th:value="${cliente.cpf}" class="form-control" placeholder="___.___.___-__" required>
+                        <input th:name="cpf" id="cpf" th:value="${cliente.cpf}" class="form-control" placeholder="___.___.___-__" data-tipo="cpf" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" th:name="telefone" id="telefone" th:value="${cliente.telefone}" class="form-control" placeholder="(xx) xxxxx-xxxx" required>
+                        <input type="tel" th:name="telefone" id="telefone" th:value="${cliente.telefone}" class="form-control" placeholder="( ) 9____-____" data-tipo="telefone" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email">Email</label>
-                        <input type="email" th:name="email" id="email" th:value="${cliente.email}" class="form-control" placeholder="fulano@gmail.com" required>
+                        <input type="email" th:name="email" id="email" th:value="${cliente.email}" class="form-control" placeholder="fulano@gmail.com" data-tipo="email" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="profissao">Profissão</label>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="renda">Renda</label>
-                        <input th:name="renda" id="renda" th:value="${cliente.renda}" class="form-control" placeholder="000.00" required>
+                        <input th:name="renda" id="renda" th:value="${cliente.renda}" class="form-control" placeholder="000.00" data-tipo="renda" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="status">Status do Cliente</label>
@@ -86,5 +86,6 @@
             </form>
         </div>
     </div>
+    <script src="./js/app.js" type="module"></script>
 </body>
 </html>

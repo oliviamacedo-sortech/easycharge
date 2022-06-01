@@ -18,30 +18,30 @@
             <h1 class="display-4">Novo Cliente</h1>
         </div>
         <div class="card mt-3 mb-4">
-            <form th:object="${clienteDTO}" class="formulario-cliente card-body bg-light" action="/cliente/novo" method="post">
+            <form th:object="${clienteDTO}" class="card-body bg-light" action="/cliente/novo" method="post">
                 <input hidden th:field="*{id}" class="form-control">
                 <h4>Dados Pessoais</h4>
                 <div class="row g-3">
                     <div class="form-group col-8">
                         <label for="nome">Nome Cliente</label>
-                        <input th:field="*{nome}" th:errorsclass="is-invalid" class="form-control" placeholder="nome do cliente" required>
+                        <input th:field="*{nome}" th:errorsclass="is-invalid" class="form-control" placeholder="nome do cliente" data-tipo="nome" required>
                         <div class="invalid-feedback">
                             <span th:errors="*{nome}">Erros do nome do cliente</span>
                         </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cpf">CPF</label>
-                        <input th:field="*{cpf}" class="form-control" placeholder="___.___.___-__" required>
+                        <input th:field="*{cpf}" class="form-control" placeholder="___.___.___-__" data-tipo="cpf" required>
                         <div class="invalid-feedback">O cpf é um campo obrigatório</div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" th:field="*{telefone}" class="form-control" placeholder="( ) 9____-____" required>
+                        <input type="tel" th:field="*{telefone}" class="form-control" placeholder="( ) 9____-____" data-tipo="telefone" required>
                         <div class="invalid-feedback">O telefone é um campo obrigatório</div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email">Email</label>
-                        <input type="email" th:field="*{email}" class="form-control" placeholder="fulano@gmail.com" required>
+                        <input type="email" th:field="*{email}" class="form-control" placeholder="fulano@gmail.com" data-tipo="email" required>
                         <div class="invalid-feedback">O email é um campo obrigatório</div>
                     </div>
                     <div class="form-group col-md-4">
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="renda">Renda</label>
-                        <input th:field="*{renda}" class="form-control" placeholder="000.00" required>
+                        <input th:field="*{renda}" class="form-control" placeholder="000.00" data-tipo="renda" required>
                         <div class="invalid-feedback">A renda é um campo obrigatório</div>
                     </div>
                     <div class="form-group col-md-4">
@@ -100,6 +100,6 @@
         </div>
     </div>
 
-    <script src="validacao.js"></script>
+    <script src="/dist/js/app.js" type="module"></script>
 </body>
 </html>
