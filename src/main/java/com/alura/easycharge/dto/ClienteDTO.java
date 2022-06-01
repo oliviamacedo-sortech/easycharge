@@ -5,37 +5,55 @@ import com.alura.easycharge.models.Endereco;
 import com.alura.easycharge.models.StatusCliente;
 import org.springframework.data.domain.Page;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class ClienteDTO {
 
     private Long id;
 
+    @NotBlank(message = "É preciso preencher o Nome!")
     private String nome;
 
+    @NotBlank(message = "É preciso preencher o CPF!")
     private String cpf;
 
+    @NotBlank(message = "É preciso preencher o Email!")
+    @Email
     private String email;
 
+    @NotBlank(message = "É preciso preencher o Telefone!")
     private String telefone;
 
+    @NotBlank(message = "É preciso preencher a Rua!")
     private String rua;
 
+    @NotBlank(message = "É preciso preencher o Número!")
     private String numero;
 
     private String complemento;
 
+    @NotBlank(message = "É preciso preencher o Bairro!")
     private String bairro;
 
+    @NotBlank(message = "É preciso preencher a Cidade!")
     private String cidade;
 
+    @NotBlank(message = "É preciso preencher o Estado!")
     private String estado;
 
+    @NotBlank(message = "É preciso preencher a Profissão!")
     private String profissao;
 
+    @NotNull
+    @Positive
     private BigDecimal renda;
 
-    private StatusCliente status;
+    @NotNull
+    private StatusCliente status = StatusCliente.ATIVO;
 
     public ClienteDTO() {
     }

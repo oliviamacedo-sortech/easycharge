@@ -27,7 +27,7 @@ public class NovoClienteController {
 
     @Transactional
     @PostMapping("novo")
-    public String novo(ClienteDTO requisicao, BindingResult result){
+    public String novo(@Valid ClienteDTO requisicao, BindingResult result){
         if (result.hasErrors()){
             return "cliente/formulario";
         }
