@@ -201,6 +201,23 @@ public class ClienteDTO {
         return cliente;
     }
 
+    public void toDTO(Cliente cliente) {
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
+        this.cpf = cliente.getCpf();
+        this.email = cliente.getEmail();
+        this.telefone = cliente.getTelefone();
+        this.rua = cliente.getEndereco().getRua();
+        this.numero = cliente.getEndereco().getNumero();
+        this.complemento = cliente.getEndereco().getComplemento();
+        this.bairro = cliente.getEndereco().getBairro();
+        this.cidade = cliente.getEndereco().getCidade();
+        this.estado = cliente.getEndereco().getEstado();
+        this.profissao = cliente.getProfissao();
+        this.renda = cliente.getRenda();
+        this.status = cliente.getStatus();
+    }
+
     public static Page<ClienteDTO> converter(Page<Cliente> clientes){
         return clientes.map(ClienteDTO::new);
     }

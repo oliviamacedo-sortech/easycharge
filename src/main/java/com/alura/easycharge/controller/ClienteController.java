@@ -44,9 +44,10 @@ public class ClienteController {
     }
 
     @GetMapping("/editar")
-    public String atualizar(Model model, Long id) {
+    public String atualizar(ClienteDTO dto, Long id) {
         Cliente cliente = clienteRepository.getById(id);
-        model.addAttribute("cliente", cliente);
+//        model.addAttribute("cliente", cliente);
+        dto.toDTO(cliente);
         return "cliente/alterarCliente";
     }
 

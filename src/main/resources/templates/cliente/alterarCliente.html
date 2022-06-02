@@ -19,73 +19,108 @@
             <h1 class="display-4">Alterar Cliente</h1>
         </div>
         <div class="card mt-3 mb-4">
-            <form class="card-body bg-light" action="/cliente/alterarCliente" method="post">
+            <form class="card-body bg-light" th:object="${clienteDTO}" action="/cliente/alterarCliente" method="post">
                 <div class="form-group">
-                    <input hidden th:name="id" id="nome" th:value="${cliente.id}" class="form-control" placeholder="id do cliente">
+                    <input hidden th:field="*{id}" class="form-control" placeholder="id do cliente">
                 </div>
                 <h4>Dados Pessoais</h4>
                 <div class="row g-3">
                     <div class="form-group col-8">
                         <label for="nome">Nome Cliente</label>
-                        <input th:name="nome" id="nome" th:value="${cliente.nome}" class="form-control" placeholder="nome do cliente" data-tipo="nome" required>
+                        <input th:field="*{nome}" th:errorclass="is-invalid" class="form-control" placeholder="nome do cliente" data-tipo="nome" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{nome}">Erros do nome do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cpf">CPF</label>
-                        <input th:name="cpf" id="cpf" th:value="${cliente.cpf}" class="form-control" placeholder="___.___.___-__" data-tipo="cpf" required>
+                        <input th:field="*{cpf}" th:errorclass="is-invalid" class="form-control" maxlength="14" placeholder="___.___.___-__" data-tipo="cpf" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{cpf}">Erros do cpf do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" th:name="telefone" id="telefone" th:value="${cliente.telefone}" class="form-control" placeholder="( ) 9____-____" data-tipo="telefone" required>
+                        <input type="tel" th:field="*{telefone}" th:errorclass="is-invalid" class="form-control" placeholder="( ) 9____-____" pattern="\(?\d{2}\)?\s?9\d{4}-?\d{4}" data-tipo="telefone" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{telefone}">Erros do telefone do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email">Email</label>
-                        <input type="email" th:name="email" id="email" th:value="${cliente.email}" class="form-control" placeholder="fulano@gmail.com" data-tipo="email" required>
+                        <input type="email" th:field="*{email}" th:errorclass="is-invalid" class="form-control" placeholder="fulano@gmail.com" data-tipo="email" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{email}">Erros do email do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="profissao">Profissão</label>
-                        <input th:name="profissao" id="profissao" th:value="${cliente.profissao}" class="form-control" placeholder="profissão do cliente" required>
+                        <input th:field="*{profissao}" th:errorclass="is-invalid" class="form-control" placeholder="profissão do cliente" data-tipo="profissao" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{profissao}">Erros do profissao do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="renda">Renda</label>
-                        <input th:name="renda" id="renda" th:value="${cliente.renda}" class="form-control" placeholder="000.00" data-tipo="renda" required>
+                        <input th:field="*{renda}" th:errorclass="is-invalid" class="form-control" placeholder="000.00" data-tipo="renda" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{renda}">Erros do renda do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="status">Status do Cliente</label>
-                        <select th:name="status" id="status" th:value="${cliente.status}" class="form-control" required>
+                        <label for="status">Status do cliente</label>
+                        <!--<input th:field="*{statusCliente}" class="form-control" placeholder="ATIVO ou SUSPENSO" required>-->
+                        <select th:field="*{status}" class="form-control" required>
                             <option value="SUSPENSO">SUSPENSO</option>
                             <option value="ATIVO">ATIVO</option>
                         </select>
                     </div>
                     <h4 class="pt-3">Endereço</h4>
-                    <div class="form-group col-md-4">
-                        <label for="cliente.endereco.rua">Rua</label>
-                        <input th:name="rua" id="rua" th:value="${cliente.endereco.rua}" class="form-control" placeholder="Av.Fulano de tal" required>
+                <div class="row g-3">
+                    <div class="form-group  col-md-4">
+                        <label for="rua">Rua</label>
+                        <input th:field="*{rua}" th:errorclass="is-invalid" class="form-control" placeholder="Av.Fulano de tal" data-tipo="rua" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{rua}">Erros do rua do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="cliente.endereco.numero">Número</label>
-                        <input th:name="numero" id="numero" th:value="${cliente.endereco.numero}" class="form-control" placeholder="1003" required>
+                        <label for="numero">Número</label>
+                        <input th:field="*{numero}" th:errorclass="is-invalid" class="form-control" placeholder="25" data-tipo="numero" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{numero}">Erros do numero do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="cliente.endereco.complemento">Complemento</label>
-                        <input th:name="complemento" id="complemento" th:value="${cliente.endereco.complemento}" class="form-control" >
+                        <label for="complemento">Complemento</label>
+                        <input th:field="*{complemento}" class="form-control" >
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="cliente.endereco.bairro">Bairro</label>
-                        <input th:name="bairro" id="bairro" th:value="${cliente.endereco.bairro}" class="form-control" placeholder="" required>
+                        <label for="bairro">Bairro</label>
+                        <input th:field="*{bairro}" th:errorclass="is-invalid" class="form-control" data-tipo="bairro" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{bairro}">Erros do bairro do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="cliente.endereco.cidade">Cidade</label>
-                        <input th:name="cidade" id="cidade" th:value="${cliente.endereco.cidade}" class="form-control" placeholder="Brasília" required>
+                        <label for="cidade">Cidade</label>
+                        <input th:field="*{cidade}" th:errorclass="is-invalid" class="form-control" data-tipo="cidade" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{cidade}">Erros do cidade do cliente</span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="cliente.endereco.estado">Estado</label>
-                        <input th:name="estado" id="estado" th:value="${cliente.endereco.estado}" class="form-control" placeholder="DF" required>
+                        <label for="estado">Estado</label>
+                        <input th:field="*{estado}" th:errorclass="is-invalid" class="form-control" data-tipo="estado" required>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{estado}">Erros do estado do cliente</span>
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Alterar</button>
             </form>
         </div>
     </div>
-    <script src="./js/app.js" type="module"></script>
+    <script src="/dist/js/app.js" type="module"></script>
 </body>
 </html>
