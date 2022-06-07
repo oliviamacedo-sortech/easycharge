@@ -24,6 +24,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/clientes")
 public class ClienteRestController {
 
