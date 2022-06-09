@@ -2,6 +2,7 @@ package com.alura.easycharge.dto;
 
 import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.models.StatusDivida;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -68,7 +69,7 @@ public class DividaDTO {
         return idCliente;
     }
 
-        public static List<DividaDTO> converter(List<Divida> dividas){
-        return dividas.stream().map(DividaDTO::new).collect(Collectors.toList());
+        public static Page<DividaDTO> converter(Page<Divida> dividas){
+        return dividas.map(DividaDTO::new);
     }
 }

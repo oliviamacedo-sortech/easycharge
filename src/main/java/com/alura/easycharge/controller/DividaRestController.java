@@ -12,6 +12,10 @@ import com.alura.easycharge.models.Divida;
 import com.alura.easycharge.repository.ClienteRepository;
 import com.alura.easycharge.repository.DividaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +28,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/dividas")
 public class DividaRestController {
 
@@ -34,8 +39,9 @@ public class DividaRestController {
     private ClienteRepository clienteRepository;
 
     @GetMapping
-    public List<DividaDTO> lista(){
-        List<Divida> dividas = dividaRepository.findAll();
+    public Page<DividaDTO> lista(@PageableDefault(sort = "id", direction = Sort.Direction.DESC,page = 0, size = 5)
+    Pageable paginacao){
+        Page<Divida> dividas = dividaRepository.findAll(paginacao);
         return DividaDTO.converter(dividas);
     }
 
