@@ -14,9 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -32,7 +34,7 @@ public class ClienteRestController {
     private ClienteRepository clienteRepository;
 
     @GetMapping
-      public  Page<ClienteDTOJson> lista(@PageableDefault(sort = "id", direction = Sort.Direction.DESC,page = 0, size = 10) Pageable paginacao){
+      public  Page<ClienteDTOJson> lista(@PageableDefault(sort = "id", direction = Sort.Direction.DESC,page = 0, size = 5) Pageable paginacao){
         Page<Cliente> clientes = clienteRepository.findAll(paginacao);
         return ClienteDTOJson.converter(clientes);
     }
@@ -70,6 +72,15 @@ public class ClienteRestController {
     @DeleteMapping("/{id}")
     public ResponseEntity remover(@PathVariable Long id){
         clienteRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @Transactional
+    @CrossOrigin
+    @PutMapping("/alterarStatus/{id}")
+    public ResponseEntity<ClienteDTO> alterarStatus(@PathVariable Long id) {
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "O cliente não foi encontrado"));
+        cliente.alterarStatus();
         return ResponseEntity.ok().build();
     }
 }

@@ -138,12 +138,11 @@ public class Cliente  {
                 '}';
     }
 
-    public Cliente alteracaoStatus(Cliente cliente){
-        if (cliente.getStatus().equals(StatusCliente.ATIVO)){
-            cliente.setStatus(StatusCliente.SUSPENSO);
+    public void alterarStatus(){
+        if (this.status.equals(StatusCliente.SUSPENSO)){
+            status = StatusCliente.ATIVO;
         } else {
-            cliente.setStatus(StatusCliente.ATIVO);
+            status = StatusCliente.SUSPENSO;
         }
-        return cliente;
     }
 }

@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@CrossOrigin
 public class ClienteController {
 
     @Autowired
@@ -39,7 +40,7 @@ public class ClienteController {
     @GetMapping("/alterarStatus")
     public String alterarStatus(@RequestParam Long id){
         Cliente cliente = clienteRepository.getById(id);
-        cliente.alteracaoStatus(cliente);
+        cliente.alterarStatus();
         return "redirect:/listaCliente";
     }
 
