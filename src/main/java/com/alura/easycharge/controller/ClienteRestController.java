@@ -76,7 +76,6 @@ public class ClienteRestController {
     }
 
     @Transactional
-    @CrossOrigin
     @PutMapping("/alterarStatus/{id}")
     public ResponseEntity<ClienteDTO> alterarStatus(@PathVariable Long id) {
         Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "O cliente não foi encontrado"));
